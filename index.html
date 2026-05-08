@@ -1006,15 +1006,43 @@ footer {
 }
 
 @media (max-width: 768px) {
-  section { padding: 5rem 1.25rem; }
+  section { padding: 4rem 1.25rem; }
 
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
 
+  nav { padding: 1rem 1.25rem; }
+  nav.scrolled { padding: 0.6rem 1.25rem; }
+
+  .hero { min-height: 100svh; }
+  .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.3em; }
+  .hero-aruba { letter-spacing: 0.3em; margin-bottom: 1.5rem; }
+  .hero-tagline { font-size: 1rem; padding: 0 1rem; }
+
+  .about-text { font-size: 1.1rem; line-height: 1.7; }
+
+  .section-title { font-size: 2rem; }
+  .section-label { font-size: 0.6rem; }
+
+  .exp-card { padding: 2rem 1.5rem; }
+  .exp-name { font-size: 1.2rem; }
+  .exp-desc { font-size: 0.95rem; }
+
   .menu-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .menu-tab { padding: 0.75rem 1.25rem; font-size: 0.75rem; white-space: nowrap; }
 
+  .menu-category-name { font-size: 1rem; }
+  .menu-item-name { font-size: 0.85rem; }
+  .menu-item-price { font-size: 0.8rem; }
+  .menu-item-desc { font-size: 0.8rem; }
+
+  .pizza-card { padding: 1rem 1.25rem; }
+  .pizza-name { font-size: 0.95rem; }
+  .pizza-desc { font-size: 0.85rem; }
+
   .visit-socials { flex-direction: column; }
+  .visit-map { min-height: 300px; }
+  .visit-map iframe { min-height: 300px; }
 
   .gallery-grid {
     grid-template-columns: 1fr 1fr;
@@ -1023,9 +1051,32 @@ footer {
 }
 
 @media (max-width: 480px) {
+  section { padding: 3.5rem 1rem; }
+
   .hero-title { letter-spacing: 0.06em; }
+  .hero-title span { font-size: clamp(3rem, 18vw, 5rem); }
+
+  .about-text { font-size: 1.05rem; line-height: 1.65; }
+  .about-rating { padding: 0.5rem 1rem; flex-wrap: wrap; justify-content: center; }
+  .about-rating-text { font-size: 0.65rem; }
+
+  .exp-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .exp-card { padding: 1.75rem 1.25rem; }
+
+  .menu-tabs { margin-bottom: 2rem; }
+  .menu-happy-hour { padding: 1.25rem; }
+  .menu-happy-hour .hh-items { gap: 0.75rem 1.5rem; }
+
+  .pizza-grid { gap: 1rem; }
+
   .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
   .gallery-item:nth-child(4) { grid-column: span 1; }
+
+  .visit-info-value { font-size: 1.05rem; }
+
+  footer { padding: 2rem 1rem; }
+  .footer-note { font-size: 0.8rem; }
+  .footer-copy { font-size: 0.65rem; }
 }
 </style>
 </head>
