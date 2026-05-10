@@ -1039,6 +1039,100 @@ section { padding: 7rem 2rem; }
   margin-top: 0.2rem;
 }
 
+/* ═══ DELIVERY FAB ═══ */
+.delivery-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 900;
+  background: var(--gold);
+  color: var(--night);
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s, background 0.3s;
+  font-size: 1.4rem;
+}
+.delivery-fab:hover { transform: scale(1.1); background: var(--text-bright); }
+
+.delivery-popup {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  z-index: 901;
+  background: var(--night-elevated);
+  border: 1px solid rgba(212, 165, 116, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 260px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+}
+.delivery-popup.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.delivery-popup-title {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.delivery-popup-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: rgba(212, 165, 116, 0.06);
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.2s;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.delivery-popup-link:last-child { margin-bottom: 0; }
+.delivery-popup-link:hover { background: rgba(212, 165, 116, 0.15); }
+.delivery-popup-link svg { width: 22px; height: 22px; flex-shrink: 0; fill: var(--gold); }
+.delivery-popup-link span { font-size: 0.7rem; color: var(--text-dim); font-weight: 400; display: block; }
+
+/* ═══ DELIVERY SECTION IN VISIT ═══ */
+.visit-delivery {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.visit-delivery-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  background: rgba(212, 165, 116, 0.1);
+  border: 1px solid rgba(212, 165, 116, 0.15);
+  text-decoration: none;
+  color: var(--gold);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.visit-delivery-btn:hover { background: rgba(212, 165, 116, 0.2); border-color: rgba(212, 165, 116, 0.3); }
+.visit-delivery-btn svg { width: 16px; height: 16px; fill: var(--gold); }
+
 /* ═══ FOOTER ═══ */
 footer {
   padding: 2.5rem 2rem;
@@ -1653,6 +1747,20 @@ footer {
         </div>
 
         <div class="visit-info-block">
+          <p class="visit-info-label">Delivery</p>
+          <div class="visit-delivery">
+            <a href="https://vapvapeats.com/restaurant?id=665" target="_blank" rel="noopener" class="visit-delivery-btn">
+              <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+              VapVap Eats
+            </a>
+            <a href="https://app.arubatoyou.com/en/m/coming-soon-che-bar/69125f4f4dce2103de033800" target="_blank" rel="noopener" class="visit-delivery-btn">
+              <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+              Aruba To You
+            </a>
+          </div>
+        </div>
+
+        <div class="visit-info-block">
           <p class="visit-info-label">Follow Us</p>
           <div class="visit-socials">
             <a href="https://www.instagram.com/chebararuba/" target="_blank" rel="noopener" class="social-link">
@@ -1688,6 +1796,20 @@ footer {
   </div>
 </section>
 
+<!-- ═══ DELIVERY FAB ═══ -->
+<button class="delivery-fab" id="deliveryFab" aria-label="Order Delivery">🛵</button>
+<div class="delivery-popup" id="deliveryPopup">
+  <p class="delivery-popup-title">Order Delivery</p>
+  <a href="https://vapvapeats.com/restaurant?id=665" target="_blank" rel="noopener" class="delivery-popup-link">
+    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+    <div>VapVap Eats<span>Order on VapVap</span></div>
+  </a>
+  <a href="https://app.arubatoyou.com/en/m/coming-soon-che-bar/69125f4f4dce2103de033800" target="_blank" rel="noopener" class="delivery-popup-link">
+    <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+    <div>Aruba To You<span>Order on ArubaToYou</span></div>
+  </a>
+</div>
+
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <p class="footer-note">Prices are in US Dollars &middot; No service charge added</p>
@@ -1695,6 +1817,19 @@ footer {
 </footer>
 
 <script>
+// ═══ DELIVERY FAB ═══
+const deliveryFab = document.getElementById('deliveryFab');
+const deliveryPopup = document.getElementById('deliveryPopup');
+deliveryFab.addEventListener('click', (e) => {
+  e.stopPropagation();
+  deliveryPopup.classList.toggle('active');
+});
+document.addEventListener('click', (e) => {
+  if (!deliveryPopup.contains(e.target) && e.target !== deliveryFab) {
+    deliveryPopup.classList.remove('active');
+  }
+});
+
 // ═══ NAV SCROLL ═══
 const nav = document.querySelector('nav');
 const handleScroll = () => {
