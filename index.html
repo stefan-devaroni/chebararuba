@@ -1048,18 +1048,24 @@ section { padding: 7rem 2rem; }
   background: var(--gold);
   color: var(--night);
   border: none;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  padding: 0 1.25rem;
+  height: 48px;
+  border-radius: 999px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   transition: transform 0.3s, background 0.3s;
-  font-size: 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
-.delivery-fab:hover { transform: scale(1.1); background: var(--text-bright); }
+.delivery-fab .fab-icon { font-size: 1.2rem; line-height: 1; }
+.delivery-fab:hover { transform: scale(1.05); background: var(--text-bright); }
 
 .delivery-popup {
   position: fixed;
@@ -1797,7 +1803,7 @@ footer {
 </section>
 
 <!-- ═══ DELIVERY FAB ═══ -->
-<button class="delivery-fab" id="deliveryFab" aria-label="Order Delivery">🛵</button>
+<button class="delivery-fab" id="deliveryFab" aria-label="Order Delivery"><span class="fab-icon">🛵</span> Delivery</button>
 <div class="delivery-popup" id="deliveryPopup">
   <p class="delivery-popup-title">Order Delivery</p>
   <a href="https://vapvapeats.com/restaurant?id=665" target="_blank" rel="noopener" class="delivery-popup-link">
