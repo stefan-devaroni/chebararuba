@@ -775,9 +775,8 @@ section { padding: 7rem 2rem; }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 300px;
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
   margin-top: 3rem;
 }
 
@@ -786,15 +785,13 @@ section { padding: 7rem 2rem; }
   overflow: hidden;
   cursor: pointer;
   border-radius: 10px;
+  background: var(--night-surface);
 }
-
-.gallery-item:nth-child(1) { grid-row: span 2; }
-.gallery-item:nth-child(4) { grid-column: span 2; }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -802,7 +799,7 @@ section { padding: 7rem 2rem; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26, 22, 18, 0.4), transparent 50%);
+  background: linear-gradient(to top, rgba(26, 22, 18, 0.3), transparent 50%);
   opacity: 0;
   transition: opacity 0.4s;
 }
@@ -1192,11 +1189,8 @@ footer {
   .exp-grid { grid-template-columns: 1fr 1fr; }
   .visit-grid { grid-template-columns: 1fr; }
   .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 220px;
+    grid-template-columns: repeat(3, 1fr);
   }
-  .gallery-item:nth-child(1) { grid-row: span 1; }
-  .gallery-item:nth-child(4) { grid-column: span 1; }
   .pizza-grid { grid-template-columns: 1fr; }
   .menu-items { grid-template-columns: 1fr; }
 }
@@ -1242,8 +1236,7 @@ footer {
   .visit-map iframe { min-height: 300px; }
 
   .gallery-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 180px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1266,8 +1259,7 @@ footer {
 
   .pizza-grid { gap: 1rem; }
 
-  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
-  .gallery-item:nth-child(4) { grid-column: span 1; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 
   .visit-info-value { font-size: 1.05rem; }
 
@@ -1658,15 +1650,18 @@ footer {
       <div class="section-divider"></div>
     </div>
     <div class="gallery-grid fade-in">
+      <!-- Row 1: 4 landscape pizzas -->
       <div class="gallery-item"><picture><source srcset="images/food/pizza-03.webp" type="image/webp"><img src="images/food/pizza-03.jpg" alt="Che Bar Aruba prosciutto and arugula pizza with burrata" width="1200" height="900" loading="lazy"></picture></div>
-      <div class="gallery-item"><picture><source srcset="images/food/aperol-spritz.webp" type="image/webp"><img src="images/food/aperol-spritz.jpg" alt="Che Bar Aruba Aperol Spritz cocktail" width="1200" height="1500" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-01.webp" type="image/webp"><img src="images/food/pizza-01.jpg" alt="Che Bar Aruba pepperoni pizza with local drinks" width="1200" height="900" loading="lazy"></picture></div>
-      <div class="gallery-item"><picture><source srcset="images/food/breakfast-spot.webp" type="image/webp"><img src="images/food/breakfast-spot.jpg" alt="Che Bar Aruba outdoor breakfast spot storefront" width="1200" height="900" loading="lazy"></picture></div>
-      <div class="gallery-item"><picture><source srcset="images/food/coco-mojito.webp" type="image/webp"><img src="images/food/coco-mojito.jpg" alt="Che Bar Aruba Coco Mojito cocktail with mint" width="1200" height="1500" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-05.webp" type="image/webp"><img src="images/food/pizza-05.jpg" alt="Che Bar classic wood-fired Margherita pizza" width="1200" height="900" loading="lazy"></picture></div>
-      <div class="gallery-item"><picture><source srcset="images/food/espresso-martini.webp" type="image/webp"><img src="images/food/espresso-martini.jpg" alt="Che Bar Aruba Espresso Martini cocktail" width="1200" height="1500" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-17.webp" type="image/webp"><img src="images/food/pizza-17.jpg" alt="Che Bar Mellow Mushroom pizza with portobello" width="1200" height="900" loading="lazy"></picture></div>
+      <!-- Row 2: 4 portrait cocktails -->
+      <div class="gallery-item"><picture><source srcset="images/food/aperol-spritz.webp" type="image/webp"><img src="images/food/aperol-spritz.jpg" alt="Che Bar Aruba Aperol Spritz cocktail" width="1200" height="1500" loading="lazy"></picture></div>
+      <div class="gallery-item"><picture><source srcset="images/food/coco-mojito.webp" type="image/webp"><img src="images/food/coco-mojito.jpg" alt="Che Bar Aruba Coco Mojito cocktail with mint" width="1200" height="1500" loading="lazy"></picture></div>
+      <div class="gallery-item"><picture><source srcset="images/food/espresso-martini.webp" type="image/webp"><img src="images/food/espresso-martini.jpg" alt="Che Bar Aruba Espresso Martini cocktail" width="1200" height="1500" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/honey-deuce.webp" type="image/webp"><img src="images/food/honey-deuce.jpg" alt="Che Bar Aruba Honey Deuce cocktail" width="1200" height="1500" loading="lazy"></picture></div>
+      <!-- Row 3: 4 landscape (pizzas + exterior) -->
+      <div class="gallery-item"><picture><source srcset="images/food/breakfast-spot.webp" type="image/webp"><img src="images/food/breakfast-spot.jpg" alt="Che Bar Aruba outdoor breakfast spot storefront" width="1200" height="900" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-10.webp" type="image/webp"><img src="images/food/pizza-10.jpg" alt="Che Bar Aruba Loves You loaded pizza" width="1200" height="900" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-21.webp" type="image/webp"><img src="images/food/pizza-21.jpg" alt="Che Bar pesto and mozzarella pizza Aruba" width="1200" height="900" loading="lazy"></picture></div>
       <div class="gallery-item"><picture><source srcset="images/food/pizza-04.webp" type="image/webp"><img src="images/food/pizza-04.jpg" alt="Che Bar mortadella and burrata wood-fired pizza" width="1200" height="900" loading="lazy"></picture></div>
