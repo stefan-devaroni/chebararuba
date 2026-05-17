@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Che Bar — Feedback Card (Print)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f5f0eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.instructions {
+  max-width: 500px;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.instructions h2 {
+  font-family: 'Cinzel', serif;
+  color: #1a1612;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Standard business card: 3.5" x 2" at 300dpi = 1050x600px */
+/* We'll display at 2x scale for screen, print at actual size */
+.card {
+  width: 3.5in;
+  height: 2in;
+  background: #1a1612;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35in;
+  padding: 0 0.3in;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold border */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.card-left {
+  flex: 1;
+  text-align: center;
+}
+
+.card-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #d4a574;
+  line-height: 1;
+  margin-bottom: 0.04in;
+}
+
+.card-aruba {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.38rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(212, 165, 116, 0.5);
+  text-transform: uppercase;
+  margin-bottom: 0.12in;
+}
+
+.card-divider {
+  width: 0.4in;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.3), transparent);
+  margin: 0 auto 0.1in;
+}
+
+.card-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.28rem;
+  color: #c4beb8;
+  line-height: 1.6;
+}
+
+.card-text strong {
+  color: #f0ece8;
+  font-weight: 500;
+}
+
+.card-qr {
+  width: 1.1in;
+  height: 1.1in;
+  background: white;
+  border-radius: 6px;
+  padding: 0.06in;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-qr img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-scan {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.22rem;
+  color: rgba(212, 165, 116, 0.6);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0.1in;
+  right: 0.3in;
+  text-align: center;
+  width: 1.1in;
+}
+
+.print-btn {
+  margin-top: 1.5rem;
+  background: #1a1612;
+  color: #d4a574;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.print-btn:hover { opacity: 0.8; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .instructions, .print-btn { display: none; }
+  .card {
+    box-shadow: none;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <h2>Feedback Card</h2>
+  <p>Print this card and include it with the check. Guests scan the QR code to leave a Google review or send private feedback.</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem; color:#999;">Card size: standard business card (3.5" &times; 2")</p>
+</div>
+
+<div class="card">
+  <div class="card-left">
+    <p class="card-logo">CHE BAR</p>
+    <p class="card-aruba">Aruba</p>
+    <div class="card-divider"></div>
+    <p class="card-text">
+      <strong>Enjoyed your visit?</strong><br>
+      We'd love to hear from you!<br>
+      Scan to leave a quick review<br>
+      or share your feedback.
+    </p>
+  </div>
+  <div class="card-qr">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://chebararuba.com/feedback/&color=1a1612&bgcolor=ffffff&margin=1" alt="QR code to chebararuba.com/feedback">
+  </div>
+  <p class="card-scan">scan me</p>
+</div>
+
+<button class="print-btn" onclick="window.print()">Print Card</button>
+
+</body>
+</html>
