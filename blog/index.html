@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H1DM2MNTK7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H1DM2MNTK7');</script>
+<title>Aruba Travel Guide — Tips & Local Secrets | Che Bar Aruba</title>
+<meta name="description" content="Your insider guide to Aruba from the team at Che Bar. Travel tips, local secrets, and everything you need to know for the perfect island trip.">
+<meta property="og:title" content="Aruba Travel Guide | Che Bar Aruba">
+<meta property="og:description" content="Tips, stories & local secrets from Palm Beach, Aruba.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chebararuba.com/blog/">
+<link rel="canonical" href="https://chebararuba.com/blog/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --night: #1a1612;
+  --night-surface: #211d18;
+  --night-elevated: #2a2520;
+  --gold: #d4a574;
+  --gold-dim: rgba(212, 165, 116, 0.5);
+  --teal: #3B8EA5;
+  --coral: #e06040;
+  --text: #c4beb8;
+  --text-bright: #f0ece8;
+  --text-dim: #9a9490;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--night);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ═══ BACKGROUND ═══ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 165, 116, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 100%, rgba(59, 142, 165, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ═══ NAV ═══ */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+/* ═══ HERO ═══ */
+.blog-hero {
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blog-hero-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.blog-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-bright);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.blog-hero-sub {
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.hero-divider {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 2.5rem auto 0;
+}
+
+/* ═══ ARTICLES GRID ═══ */
+.articles {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.article-card {
+  background: var(--night-surface);
+  border: 1px solid rgba(212, 165, 116, 0.06);
+  border-radius: 14px;
+  padding: 2rem 2.25rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.4s, transform 0.3s, box-shadow 0.3s;
+}
+
+.article-card:hover {
+  border-color: rgba(212, 165, 116, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.article-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.article-card-tag {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.article-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text-bright);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s;
+}
+
+.article-card:hover .article-card-title { color: var(--gold); }
+
+.article-card-excerpt {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.article-card-read {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.article-card-read svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--gold);
+  transition: transform 0.3s;
+}
+
+.article-card:hover .article-card-read svg { transform: translateX(3px); }
+
+/* ═══ FOOTER ═══ */
+footer {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(212, 165, 116, 0.06);
+}
+
+.footer-note {
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(138, 133, 127, 0.5);
+}
+
+.footer-copy a {
+  color: var(--gold-dim);
+  text-decoration: none;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: 0.7rem; }
+  .blog-hero { padding: 3rem 1.5rem 2rem; }
+  .articles { padding: 1.5rem 1.25rem 4rem; }
+  .article-card { padding: 1.5rem 1.5rem; }
+  .article-card-title { font-size: 1.15rem; }
+}
+
+@media (max-width: 480px) {
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: 0.08em; }
+  .blog-hero-title { font-size: 1.75rem; }
+  .article-card { padding: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://chebararuba.com" class="nav-logo">Che Bar</a>
+  <ul class="nav-links">
+    <li><a href="https://chebararuba.com">Home</a></li>
+    <li><a href="https://chebararuba.com/#menu">Menu</a></li>
+    <li><a href="/blog/" style="color:var(--gold)">Blog</a></li>
+    <li><a href="https://chebararuba.com/#visit">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="blog-hero">
+  <p class="blog-hero-label">Che Bar &middot; Palm Beach</p>
+  <h1 class="blog-hero-title">Aruba Travel Guide</h1>
+  <p class="blog-hero-sub">Tips, stories & local secrets from Palm Beach</p>
+  <div class="hero-divider"></div>
+</header>
+
+<main class="articles">
+
+  <a href="/blog/first-time-in-aruba.html" class="article-card">
+    <div class="article-card-meta">
+      <span class="article-card-tag">Travel Tips</span>
+      <span>May 18, 2026</span>
+      <span>5 min read</span>
+    </div>
+    <h2 class="article-card-title">First Time in Aruba? 10 Things to Know Before You Go</h2>
+    <p class="article-card-excerpt">From currency and tipping to gas station etiquette and the best way to get around — everything first-time visitors wish they knew before landing on the One Happy Island.</p>
+    <span class="article-card-read">Read article <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+  </a>
+
+</main>
+
+<footer>
+  <p class="footer-note">From sunrise pancakes to moonlit pizzas</p>
+  <p class="footer-copy">&copy; 2026 <a href="https://chebararuba.com">Che Bar Aruba</a>. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
