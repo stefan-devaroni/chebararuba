@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Join Our Team | Che Bar Aruba</title>
+<meta name="description" content="We're hiring! Apply to join the Che Bar team in Palm Beach, Aruba. Bartender and server positions available.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --night: #1a1612;
+  --night-surface: #211d18;
+  --night-elevated: #2a2520;
+  --gold: #d4a574;
+  --gold-dim: rgba(212, 165, 116, 0.5);
+  --teal: #3B8EA5;
+  --coral: #e06040;
+  --text: #c4beb8;
+  --text-bright: #f0ece8;
+  --text-dim: #9a9490;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--night);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 165, 116, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 100%, rgba(59, 142, 165, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ═══ HERO ═══ */
+.careers-hero {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.careers-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.careers-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-bright);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.careers-sub {
+  font-family: var(--font-accent);
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.hero-divider {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 2.5rem auto 0;
+}
+
+/* ═══ FORM ═══ */
+.form-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+}
+
+.form-card {
+  background: var(--night-surface);
+  border: 1px solid rgba(212, 165, 116, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: var(--night);
+  border: 1px solid rgba(212, 165, 116, 0.1);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text-bright);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: rgba(212, 165, 116, 0.3);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.06);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239a9490' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.form-select option {
+  background: var(--night);
+  color: var(--text-bright);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: var(--gold);
+  color: var(--night);
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+}
+
+.form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 165, 116, 0.25);
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.form-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* ═══ THANK YOU ═══ */
+.thank-you {
+  display: none;
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.thank-you.show { display: block; }
+.form-card.hide { display: none; }
+
+.thank-you-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.thank-you-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-bright);
+  margin-bottom: 0.75rem;
+}
+
+.thank-you-text {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ═══ ERROR ═══ */
+.form-error {
+  display: none;
+  background: rgba(224, 96, 64, 0.1);
+  border: 1px solid rgba(224, 96, 64, 0.2);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--coral);
+  text-align: center;
+}
+
+.form-error.show { display: block; }
+
+/* ═══ FOOTER ═══ */
+footer {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(212, 165, 116, 0.06);
+}
+
+.footer-note {
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(138, 133, 127, 0.5);
+}
+
+.footer-copy a { color: var(--gold-dim); text-decoration: none; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1.25rem; }
+  .nav-links a { font-size: 0.7rem; }
+  .careers-hero { padding: 3rem 1.5rem 1.5rem; }
+  .form-container { padding: 2rem 1.25rem 4rem; }
+  .form-card { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 0.65rem; letter-spacing: 0.08em; }
+  .careers-title { font-size: 1.5rem; }
+  .form-card { padding: 1.5rem 1.25rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://chebararuba.com" class="nav-logo">Che Bar</a>
+  <ul class="nav-links">
+    <li><a href="https://chebararuba.com">Home</a></li>
+    <li><a href="https://chebararuba.com/#menu">Menu</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="https://chebararuba.com/#visit">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="careers-hero">
+  <p class="careers-label">We're Hiring</p>
+  <h1 class="careers-title">Join the Che Bar Team</h1>
+  <p class="careers-sub">We're looking for friendly, hardworking people to join our team at Paseo Herencia Mall in Palm Beach, Aruba.</p>
+  <div class="hero-divider"></div>
+</header>
+
+<main class="form-container">
+  <div class="form-card" id="formCard">
+    <div class="form-error" id="formError">Something went wrong. Please try again.</div>
+    <form id="applicationForm">
+
+      <div class="form-group">
+        <label class="form-label" for="name">Full Name *</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address *</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone Number *</label>
+          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+297 ..." required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="age">Age *</label>
+          <input class="form-input" type="number" id="age" name="age" placeholder="25" min="16" max="99" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="position">Position *</label>
+        <select class="form-select" id="position" name="position" required>
+          <option value="" disabled selected>Select a position</option>
+          <option value="Waiter / Server">Waiter / Server</option>
+          <option value="Bartender">Bartender</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="experience">Previous Work Experience *</label>
+        <textarea class="form-textarea" id="experience" name="experience" placeholder="Tell us about your previous work experience in hospitality, food &amp; beverage, or related fields..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="about">Tell Us About Yourself</label>
+        <textarea class="form-textarea" id="about" name="about" placeholder="What should we know about you? Why do you want to work at Che Bar?" style="min-height:80px;"></textarea>
+      </div>
+
+      <button class="form-submit" type="submit" id="submitBtn">Submit Application</button>
+      <p class="form-note">We'll review your application and get back to you if there's a match. Thanks for your interest!</p>
+    </form>
+  </div>
+
+  <div class="thank-you" id="thankYou">
+    <div class="thank-you-icon">&#127881;</div>
+    <h2 class="thank-you-title">Application Received!</h2>
+    <p class="thank-you-text">Thanks for your interest in joining the Che Bar team. We'll review your application and reach out if we'd like to set up a chat.</p>
+  </div>
+</main>
+
+<footer>
+  <p class="footer-note">From sunrise pancakes to moonlit pizzas</p>
+  <p class="footer-copy">&copy; 2026 <a href="https://chebararuba.com">Che Bar Aruba</a>. All rights reserved.</p>
+</footer>
+
+<script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXRU7DVbBSQx2Er_H7fSb5abmJiVG1iaoi2UBvOGwQgtQEXeGuOTtmC4gT3NXbEqceiw/exec';
+
+document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('submitBtn');
+  const errorEl = document.getElementById('formError');
+  errorEl.classList.remove('show');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const data = {
+    name: document.getElementById('name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    age: document.getElementById('age').value,
+    position: document.getElementById('position').value,
+    experience: document.getElementById('experience').value.trim(),
+    about: document.getElementById('about').value.trim()
+  };
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    document.getElementById('formCard').classList.add('hide');
+    document.getElementById('thankYou').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  } catch (err) {
+    errorEl.classList.add('show');
+    btn.disabled = false;
+    btn.textContent = 'Submit Application';
+  }
+});
+</script>
+
+</body>
+</html>
