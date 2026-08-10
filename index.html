@@ -1320,6 +1320,7 @@ footer {
     <li><a href="#experiences">Experience</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#music">Music</a></li>
     <li><a href="/blog/">Blog</a></li>
     <li><a href="#visit">Visit</a></li>
   </ul>
@@ -1334,6 +1335,7 @@ footer {
   <a href="#experiences">Experience</a>
   <a href="#menu">Menu</a>
   <a href="#gallery">Gallery</a>
+  <a href="#music">Music</a>
   <a href="/blog/">Blog</a>
   <a href="#visit">Visit</a>
 </div>
@@ -1709,6 +1711,60 @@ footer {
   <button class="lightbox-close">&times;</button>
   <img src="" alt="Gallery image enlarged">
 </div>
+
+<!-- ═══ LIVE MUSIC ═══ -->
+<style>
+.music-sched .sched-list{max-width:440px;margin:0 auto;text-align:left}
+.music-sched .gig{display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid rgba(212,165,116,.18);border-radius:10px;margin-bottom:8px;background:rgba(42,37,32,.5)}
+.music-sched .gig .g-date{width:74px;flex-shrink:0}
+.music-sched .gig .g-dow{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+.music-sched .gig .g-num{font-family:var(--font-display);font-size:1.05rem;color:var(--gold-light)}
+.music-sched .gig .g-who{flex:1;font-size:1rem;color:var(--text)}
+.music-sched .gig .g-time{font-size:.78rem;color:var(--text-dim);flex-shrink:0}
+.music-sched .gig.past{opacity:.38}
+.music-sched .gig.tonight{border-color:var(--gold);background:rgba(212,165,116,.12)}
+.music-sched .gig.tonight .g-badge{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 8px;border-radius:999px;margin-left:8px}
+.music-sched .sched-month{font-family:var(--font-accent);font-style:italic;font-size:1.1rem;color:var(--coral);text-align:center;margin-bottom:18px}
+</style>
+<section class="music-sched" id="music">
+  <div class="section-inner">
+    <div class="fade-in" style="text-align:center">
+      <p class="section-label">Select Nights, Under the Stars</p>
+      <h2 class="section-title">Live Music</h2>
+      <div class="section-divider"></div>
+      <p class="sched-month">September 2026 &middot; sets from 7 PM</p>
+    </div>
+    <div class="sched-list fade-in">
+      <div class="gig" data-date="2026-09-03"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 3</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-04"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 4</div></div><div class="g-who">Ivan</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-06"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 6</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-10"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 10</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-11"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 11</div></div><div class="g-who">Raphaela</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-13"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 13</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-17"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 17</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-18"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 18</div></div><div class="g-who">Ivan</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-20"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 20</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-24"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 24</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-25"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 25</div></div><div class="g-who">Raphaela</div><div class="g-time">7 &ndash; 9 PM</div></div>
+      <div class="gig" data-date="2026-09-27"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 27</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var now = new Date(Date.now() - 4*3600*1000); // Aruba UTC-4
+  var today = now.toISOString().slice(0,10);
+  document.querySelectorAll('.music-sched .gig').forEach(function(g){
+    var d = g.getAttribute('data-date');
+    if (d < today) g.classList.add('past');
+    else if (d === today) {
+      g.classList.add('tonight');
+      var b = document.createElement('span'); b.className = 'g-badge'; b.textContent = 'Tonight';
+      g.querySelector('.g-who').appendChild(b);
+    }
+  });
+})();
+</script>
 
 <!-- ═══ REVIEWS ═══ -->
 <section class="reviews" id="reviews">
