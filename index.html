@@ -52,7 +52,7 @@
   "servesCuisine": ["Dutch Pancakes", "Neapolitan Pizza", "Empanadas", "Breakfast", "Cocktails", "Argentine", "Caribbean"],
   "priceRange": "$$",
   "menu": "https://chebararuba.com/#menu",
-  "acceptsReservations": "No",
+  "acceptsReservations": "https://chebararuba.com/reserve/",
   "description": "Breakfast restaurant and cocktail bar in Palm Beach, Aruba. Dutch pancakes, empanadas, and big breakfasts from 7:30 AM. Wood-fired Neapolitan pizza, craft cocktails, and happy hour (5–7 PM daily) in the evening. Live music at Paseo Herencia Mall.",
   "hasMenu": {
     "@type": "Menu",
@@ -220,6 +220,26 @@ nav.scrolled {
 .nav-links a:hover { color: var(--gold); }
 .nav-links a:hover::after { width: 100%; }
 
+/* Reserve button: always visible, next to the menu on phones */
+.nav-right { display: flex; align-items: center; gap: 1.1rem; }
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--night);
+  background: var(--gold);
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -327,6 +347,26 @@ nav.scrolled {
   opacity: 0;
   animation: fadeUp 1s 0.9s forwards;
 }
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--night);
+  background: var(--gold);
+  padding: 0.95rem 2.1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeUp 1s 1.05s forwards;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.hero-cta:hover { background: var(--gold-light); box-shadow: 0 8px 28px rgba(212, 165, 116, 0.35); }
 
 .hero-scroll {
   position: absolute;
@@ -1324,13 +1364,17 @@ footer {
     <li><a href="/blog/">Blog</a></li>
     <li><a href="#visit">Visit</a></li>
   </ul>
-  <button class="nav-toggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <a href="/reserve/" class="nav-cta" onclick="gtag('event','reserve_click',{page:'home',spot:'nav'});">Reserve</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- MOBILE DRAWER -->
 <div class="mobile-drawer">
+  <a href="/reserve/">Reserve a Table</a>
   <a href="#about">About</a>
   <a href="#experiences">Experience</a>
   <a href="#menu">Menu</a>
@@ -1348,6 +1392,7 @@ footer {
     <h1 class="hero-title"><span>CHE BAR</span></h1>
     <p class="hero-aruba">Aruba</p>
     <p class="hero-tagline">From sunrise pancakes to moonlit pizzas</p>
+    <a href="/reserve/" class="hero-cta" onclick="gtag('event','reserve_click',{page:'home',spot:'hero'});">Reserve a table</a>
   </div>
   <div class="hero-scroll">
     <span>Explore</span>
@@ -1724,6 +1769,8 @@ footer {
 .music-sched .gig.past{opacity:.38}
 .music-sched .gig.tonight{border-color:var(--gold);background:rgba(212,165,116,.12)}
 .music-sched .gig.tonight .g-badge{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 8px;border-radius:999px;margin-left:8px}
+.music-sched .sched-reserve{text-align:center;margin-top:18px;font-size:.95rem}
+.music-sched .sched-reserve a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,165,116,.4);padding-bottom:2px}
 .music-sched .sched-month{font-family:var(--font-accent);font-style:italic;font-size:1.1rem;color:var(--coral);text-align:center;margin-bottom:18px}
 </style>
 <section class="music-sched" id="music">
@@ -1748,6 +1795,7 @@ footer {
       <div class="gig" data-date="2026-09-25"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 25</div></div><div class="g-who">Raphaela</div><div class="g-time">7 &ndash; 9 PM</div></div>
       <div class="gig" data-date="2026-09-27"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 27</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
     </div>
+    <p class="sched-reserve fade-in"><a href="/reserve/" onclick="gtag('event','reserve_click',{page:'home',spot:'music'});">Reserve a table for music night</a></p>
   </div>
 </section>
 <script>
@@ -1817,6 +1865,11 @@ footer {
               Noord, Aruba
             </a>
           </p>
+        </div>
+
+        <div class="visit-info-block">
+          <p class="visit-info-label">Reservations</p>
+          <p class="visit-info-value"><a href="/reserve/" onclick="gtag('event','reserve_click',{page:'home',spot:'visit'});">Book a table online</a></p>
         </div>
 
         <div class="visit-info-block">
