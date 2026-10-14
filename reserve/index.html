@@ -139,13 +139,12 @@ footer a{color:var(--text-dim)}
     <section class="step" id="stepDetails" aria-labelledby="h-details">
       <h2 id="h-details"><span class="n">4</span>Your details</h2>
       <label class="field"><span>Name</span><input id="name" autocomplete="name" maxlength="80" required></label>
-      <label class="field"><span>Phone / WhatsApp</span><input id="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="+1 555 123 4567" required></label>
-      <label class="field"><span>Email <em>(optional)</em></span><input id="email" type="email" autocomplete="email" maxlength="120"></label>
+      <label class="field"><span>Email</span><input id="email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="you@example.com" required></label>
       <label class="field"><span>Anything we should know? <em>(optional)</em></span><textarea id="notes" rows="2" maxlength="500" placeholder="Birthday, high chair, allergies…"></textarea></label>
       <input class="hp" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="error" id="err" role="alert" hidden></p>
       <button class="cta" id="submit" type="submit" disabled>Pick a time</button>
-      <p class="fine">Instant confirmation. No deposit, no service charge.</p>
+      <p class="fine" id="fine">Instant confirmation. No deposit, no service charge.</p>
     </section>
   </form>
 
@@ -159,13 +158,13 @@ footer a{color:var(--text-dim)}
   var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
     ? 'http://localhost:3472/api/public/reservations'
     : 'https://dashboard.chebararuba.com/api/public/reservations';
-  var WHATSAPP = '2976991696';
+  var EMAIL = 'chebararuba@gmail.com';
   var HAPPY_HOUR = ['17:00', '18:59']; // highlighted times, 5–7 PM daily
   var PARTS = [['Morning', 0, 719], ['Afternoon', 720, 1019], ['Evening', 1020, 1439]];
   var DAY_CHIPS = 14;
   var $ = function(id){ return document.getElementById(id); };
 
-  var cfg = { maxParty: 8, maxDaysAhead: 60, closedDates: [], today: arubaToday() };
+  var cfg = { maxParty: 8, maxDaysAhead: 60, closedDates: [], today: arubaToday(), emails: false };
   var state = { party: 2, date: null, time: null, slots: [], busy: false };
   var slotReq = 0;
   var clientRef = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2, 10);
@@ -182,6 +181,8 @@ footer a{color:var(--text-dim)}
   function el(tag, attrs, html){ var e = document.createElement(tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (html != null) e.innerHTML = html; return e; }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function track(name, params){ try { gtag('event', name, params || {}); } catch (e) {} }
+  function mailto(subject, body){ return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + (body ? '&body=' + encodeURIComponent(body) : ''); }
+  function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
   function smooth(){ return window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; }
 
   function api(path, opts){
@@ -192,9 +193,9 @@ footer a{color:var(--text-dim)}
   function unavailable(message){
     $('book').hidden = true;
     var box = $('manage'); box.hidden = false;
-    box.innerHTML = '<div class="panel"><h2>Book by phone</h2><p class="keep">' + esc(message || 'Online booking is not available right now.') +
-      '</p><a class="cta" href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent("Hi Che Bar! I'd like to book a table.") + '">WhatsApp us</a>' +
-      '<p class="fine"><a href="tel:+2976991696" style="color:inherit">or call +297 699 1696</a></p></div>';
+    box.innerHTML = '<div class="panel"><h2>Book by email</h2><p class="keep">' + esc(message || 'Online booking is not available right now.') +
+      '</p><a class="cta" href="' + mailto('Table reservation', "Hi Che Bar! I'd like to book a table.") + '">Email us</a>' +
+      '<p class="fine">' + EMAIL + '</p></div>';
   }
 
   // ---------- step 1: party ----------
@@ -217,7 +218,7 @@ footer a{color:var(--text-dim)}
     ['stepDay', 'stepTime', 'stepDetails'].forEach(function(id){ $(id).classList.toggle('muted', big); });
     if (big) {
       var msg = "Hi Che Bar! I'd like to book a table for a group of " + n + '+' + (state.date ? ' on ' + fmtDate(state.date, true) : '') + '.';
-      note.innerHTML = 'For groups of ' + n + ' or more, message us and we’ll set up the table. <a href="https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg) + '" onclick="try{gtag(\'event\',\'whatsapp_click\',{page:\'reserve\'});fbq(\'track\',\'Contact\')}catch(e){}">WhatsApp us</a> or call <a href="tel:+2976991696">+297 699 1696</a>.';
+      note.innerHTML = 'For groups of ' + n + ' or more, email us and we’ll set up the table: <a href="' + mailto('Group booking', msg) + '" onclick="try{gtag(\'event\',\'email_click\',{page:\'reserve\'});fbq(\'track\',\'Contact\')}catch(e){}">' + EMAIL + '</a>';
       updateSubmit();
       return;
     }
@@ -324,10 +325,7 @@ footer a{color:var(--text-dim)}
   }
 
   // ---------- step 4: details + submit ----------
-  function detailsOk(){
-    var phone = $('phone').value.trim();
-    return $('name').value.trim().length > 0 && /^\+?[\d\s().-]+$/.test(phone) && phone.replace(/\D/g, '').length >= 7;
-  }
+  function detailsOk(){ return $('name').value.trim().length > 0 && emailOk($('email').value); }
   function updateSubmit(){
     var b = $('submit');
     if (state.busy) { b.disabled = true; b.textContent = 'Booking…'; return; }
@@ -335,9 +333,9 @@ footer a{color:var(--text-dim)}
     if (!state.time) { b.disabled = true; b.textContent = 'Pick a time'; return; }
     var summary = state.party + (state.party === 1 ? ' guest' : ' guests') + ' · ' + fmtDate(state.date) + ' · ' + fmtTime(state.time);
     b.disabled = !detailsOk();
-    b.textContent = detailsOk() ? 'Book ' + summary : 'Add your name & phone';
+    b.textContent = detailsOk() ? 'Book ' + summary : 'Add your name & email';
   }
-  ['name', 'phone'].forEach(function(id){ $(id).addEventListener('input', updateSubmit); });
+  ['name', 'email'].forEach(function(id){ $(id).addEventListener('input', updateSubmit); });
 
   $('book').addEventListener('submit', function(e){
     e.preventDefault();
@@ -349,12 +347,12 @@ footer a{color:var(--text-dim)}
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         date: state.date, time: state.time, party: state.party,
-        name: $('name').value, phone: $('phone').value, email: $('email').value, notes: $('notes').value,
+        name: $('name').value, email: $('email').value, notes: $('notes').value,
         clientRef: clientRef, website: $('website').value
       })
     }).then(function(res){
       state.busy = false;
-      if (res.ok && res.booking) { showDone(res.booking); return; }
+      if (res.ok && res.booking) { showDone(res.booking, res.emailed); return; }
       if (res._status === 503) { unavailable(res.error); return; }
       err.textContent = res.error || 'Something went wrong. Please try again.';
       err.hidden = false;
@@ -404,7 +402,7 @@ footer a{color:var(--text-dim)}
     document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(t);
   }
 
-  function showDone(b){
+  function showDone(b, emailed){
     track('reservation', { party_size: b.party, booking_date: b.date, booking_time: b.time });
     try { fbq('track', 'Schedule'); } catch (e) {}
     $('book').hidden = true; $('intro').hidden = true;
@@ -417,7 +415,9 @@ footer a{color:var(--text-dim)}
         '<p class="when">' + esc(fmtDate(b.date, true)) + ' · ' + fmtTime(b.time) + '</p>' +
         '<p class="who">Table for ' + b.party + ' · ' + esc(b.name) + '</p>' +
         '<div class="actions"><button type="button" class="btn2" id="ics">Add to calendar</button><a class="btn2" target="_blank" rel="noopener" href="' + googleLink(b) + '">Google Calendar</a></div>' +
-        '<p class="keep">This page is your confirmation, so take a screenshot. Need to change or cancel? Use this link:</p>' +
+        (emailed
+          ? '<p class="keep">We’ve emailed your confirmation to <b style="color:var(--text)">' + esc($('email').value.trim()) + '</b>. Need to change or cancel? Use the link in the email, or this one:</p>'
+          : '<p class="keep">This page is your confirmation, so take a screenshot. Need to change or cancel? Use this link:</p>') +
         '<div class="linkbox"><code>' + esc(link.replace(/^https?:\/\//, '')) + '</code><button type="button" id="copyLink">Copy</button></div>' +
         '<p class="fine" style="margin-top:18px">See you at Paseo Herencia Mall, Palm Beach · <a href="https://maps.google.com/?q=Che+Bar+Paseo+Herencia+Aruba" style="color:var(--gold)">Directions</a></p>' +
       '</div>';
@@ -456,7 +456,7 @@ footer a{color:var(--text-dim)}
         '<p class="who">Table for ' + b.party + ' · ' + esc(b.name) + '</p>' +
         '<span class="status' + (cancelled ? ' cancelled' : '') + '">' + label + '</span>' +
         (b.status === 'confirmed'
-          ? '<p class="keep" style="margin-top:20px">Want a different time? Cancel this one and book again, or WhatsApp us.</p><button type="button" class="linkish" id="cancelBtn">Cancel this booking</button>'
+          ? '<p class="keep" style="margin-top:20px">Want a different time? Cancel this one and book again, or <a href="' + mailto('Change my booking') + '" style="color:var(--gold)">email us</a>.</p><button type="button" class="linkish" id="cancelBtn">Cancel this booking</button>'
           : '') +
         '<div><a class="again" href="' + location.pathname + '">Make a new booking</a></div>' +
       '</div>';
@@ -467,7 +467,7 @@ footer a{color:var(--text-dim)}
       api('/manage', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: token, action: 'cancel' }) }).then(function(res){
         if (res.booking) { track('reservation_cancel'); renderManage(token, res.booking); return; }
         btn.disabled = false; btn.textContent = 'Cancel this booking';
-        alert(res.error || 'Could not cancel. Please call us at +297 699 1696.');
+        alert(res.error || 'Could not cancel. Please email us at ' + EMAIL + '.');
       }).catch(function(){
         btn.disabled = false; btn.textContent = 'Cancel this booking';
         alert('Could not reach us. Check your connection and try again.');
@@ -488,6 +488,8 @@ footer a{color:var(--text-dim)}
     cfg.maxParty = res.maxParty || cfg.maxParty;
     cfg.maxDaysAhead = res.maxDaysAhead || cfg.maxDaysAhead;
     cfg.closedDates = res.closedDates || [];
+    cfg.emails = !!res.emails;
+    if (cfg.emails) $('fine').textContent = 'Instant confirmation by email. No deposit, no service charge.';
     if (res.today) { cfg.today = res.today; if (state.date < cfg.today) state.date = cfg.today; }
     if (state.party > cfg.maxParty) state.party = Math.min(2, cfg.maxParty);
     renderParty();
