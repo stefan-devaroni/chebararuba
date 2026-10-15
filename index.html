@@ -1405,7 +1405,7 @@ footer {
   <div class="section-inner fade-in">
     <p class="section-label" style="text-align:center">Our Story</p>
     <p class="about-text">
-      Located in the heart of Palm Beach at Paseo Herencia Mall, Che Bar brings island soul to Aruba. Start your day with our beloved Dutch pancakes, fresh bagels, empanadas, breakfast burritos, and made-to-order eggs. Wind down at our daily happy hour from 5&ndash;7 PM, sip handcrafted cocktails late into the night, and catch live music multiple times a week. From sunrise breakfasts to fresh, hot, made-to-order wood-fired pizzas under the stars &mdash; every moment at Che Bar is a celebration.
+      Located in the heart of Palm Beach at Paseo Herencia Mall, Che Bar brings island soul to Aruba. Start your day with our beloved Dutch pancakes, fresh bagels, empanadas, breakfast burritos, and made-to-order eggs. Wind down at our daily happy hour from 5&ndash;7 PM, sip handcrafted cocktails late into the night, and catch live music on Thursday and Sunday nights. From sunrise breakfasts to fresh, hot, made-to-order wood-fired pizzas under the stars &mdash; every moment at Che Bar is a celebration.
     </p>
     <div style="text-align:center">
       <div class="about-rating">
@@ -1468,9 +1468,9 @@ footer {
       </div>
       <div class="exp-card exp-card--music fade-in" style="transition-delay: 0.3s">
         <span class="exp-icon">&#127928;</span>
-        <p class="exp-time">Multiple nights &middot; 7:00 &ndash; 9:00 PM</p>
+        <p class="exp-time">Thu &amp; Sun &middot; 7:00 &ndash; 9:00 PM</p>
         <h3 class="exp-name">Live Music</h3>
-        <p class="exp-desc">Enjoy live performances under the stars multiple nights a week. Check our socials for the latest schedule and upcoming artists.</p>
+        <p class="exp-desc">Live musicians on the terrace every Thursday and Sunday night. No cover charge.</p>
         <ul class="exp-highlights">
           <li>Live Bands</li>
           <li>Acoustic Sets</li>
@@ -1568,6 +1568,11 @@ footer {
         </div>
       </div>
 
+      <div class="menu-category">
+        <h3 class="menu-category-name">Ready for a Cocktail?</h3>
+        <p class="menu-category-note">Mimosa &middot; Bloody Mary &middot; Espresso Martini. Ask us about our morning special.</p>
+      </div>
+
     </div>
 
     <!-- DRINKS -->
@@ -1656,7 +1661,18 @@ footer {
 
     <!-- NIGHTS -->
     <div class="menu-panel" data-panel="dinner">
-      <p class="menu-nights-note">&#127769; Available from 6:00 PM &ndash; 10:30 PM</p>
+      <div class="menu-category">
+        <h3 class="menu-category-name" style="color:var(--neon-pink)">Empanadas</h3>
+        <p class="menu-category-note">Available all day</p>
+        <div class="menu-items">
+          <div class="menu-item"><span class="menu-item-name">Beef</span><span class="menu-item-dots"></span><span class="menu-item-price">$4.50</span></div>
+          <div class="menu-item"><span class="menu-item-name">Chicken</span><span class="menu-item-dots"></span><span class="menu-item-price">$4.25</span></div>
+          <div class="menu-item"><span class="menu-item-name">Cheese</span><span class="menu-item-dots"></span><span class="menu-item-price">$4.00</span></div>
+          <div class="menu-item"><span class="menu-item-name">Spinach &amp; Ricotta</span><span class="menu-item-dots"></span><span class="menu-item-price">$4.50</span></div>
+        </div>
+      </div>
+
+      <p class="menu-nights-note">&#127769; Pizzas from 6:00 PM &ndash; 10:30 PM</p>
 
       <div class="menu-category">
         <h3 class="menu-category-name" style="color:var(--neon-pink)">Signature Pizzas</h3>
@@ -1673,7 +1689,7 @@ footer {
         </div>
         <div class="pizza-card">
           <div class="pizza-header"><span class="pizza-name">Garden Veggies</span><span class="pizza-price">$18</span></div>
-          <p class="pizza-desc">Homemade tomato sauce, mozzarella, onions, bell peppers, black olives, mushrooms, and oregano.</p>
+          <p class="pizza-desc">Homemade tomato sauce, mozzarella, onions, bell peppers, black olives, mushrooms, and oregano. Topped with a little Parmesan sprinkle.</p>
         </div>
         <div class="pizza-card">
           <div class="pizza-header"><span class="pizza-name">Hawaiian</span><span class="pizza-price">$19</span></div>
@@ -1684,16 +1700,12 @@ footer {
           <p class="pizza-desc">Shredded chicken breast in BBQ sauce and mozzarella. Topped with a little Parmesan sprinkle.</p>
         </div>
         <div class="pizza-card">
-          <div class="pizza-header"><span class="pizza-name">Marinara</span><span class="pizza-price">$17</span></div>
-          <p class="pizza-desc">Homemade tomato sauce, garlic, oregano, black olives, and fresh basil.</p>
-        </div>
-        <div class="pizza-card">
           <div class="pizza-header"><span class="pizza-name">Happy Island</span><span class="pizza-price">$21</span></div>
-          <p class="pizza-desc">Homemade tomato sauce, mozzarella, Italian chorizo, and mushrooms.</p>
+          <p class="pizza-desc">Homemade tomato sauce, mozzarella, Italian chorizo, and mushrooms. Topped with a little Parmesan sprinkle.</p>
         </div>
         <div class="pizza-card">
           <div class="pizza-header"><span class="pizza-name">Aruba Loves You</span><span class="pizza-price">$22</span></div>
-          <p class="pizza-desc">Homemade tomato sauce, mozzarella, artichoke, salami, mushrooms, black olives, cherry tomatoes, and fresh basil.</p>
+          <p class="pizza-desc">Homemade tomato sauce, mozzarella, artichoke, salami, mushrooms, black olives, cherry tomatoes, and fresh basil. Topped with a little Parmesan sprinkle.</p>
         </div>
         <div class="pizza-card">
           <div class="pizza-header"><span class="pizza-name">Mellow Mushroom</span><span class="pizza-price">$19</span></div>
@@ -1759,58 +1771,40 @@ footer {
 
 <!-- ═══ LIVE MUSIC ═══ -->
 <style>
-.music-sched .sched-list{max-width:440px;margin:0 auto;text-align:left}
-.music-sched .gig{display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid rgba(212,165,116,.18);border-radius:10px;margin-bottom:8px;background:rgba(42,37,32,.5)}
-.music-sched .gig .g-date{width:74px;flex-shrink:0}
-.music-sched .gig .g-dow{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
-.music-sched .gig .g-num{font-family:var(--font-display);font-size:1.05rem;color:var(--gold-light)}
-.music-sched .gig .g-who{flex:1;font-size:1rem;color:var(--text)}
-.music-sched .gig .g-time{font-size:.78rem;color:var(--text-dim);flex-shrink:0}
-.music-sched .gig.past{opacity:.38}
-.music-sched .gig.tonight{border-color:var(--gold);background:rgba(212,165,116,.12)}
-.music-sched .gig.tonight .g-badge{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 8px;border-radius:999px;margin-left:8px}
+.music-sched .nights{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px;margin:0 auto}
+.music-sched .night{border:1px solid rgba(212,165,116,.22);border-radius:12px;background:rgba(42,37,32,.5);padding:20px 12px;text-align:center}
+.music-sched .night .n-day{font-family:var(--font-display);font-size:1.3rem;color:var(--gold-light);letter-spacing:.06em}
+.music-sched .night .n-time{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-top:6px}
+.music-sched .night.tonight{border-color:var(--gold);background:rgba(212,165,116,.12)}
+.music-sched .night .n-badge{display:inline-block;margin-top:10px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--night);background:var(--gold);padding:3px 9px;border-radius:999px}
+.music-sched .music-note{text-align:center;color:var(--text-dim);font-size:.95rem;line-height:1.6;max-width:420px;margin:18px auto 0}
 .music-sched .sched-reserve{text-align:center;margin-top:18px;font-size:.95rem}
 .music-sched .sched-reserve a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,165,116,.4);padding-bottom:2px}
-.music-sched .sched-month{font-family:var(--font-accent);font-style:italic;font-size:1.1rem;color:var(--coral);text-align:center;margin-bottom:18px}
 </style>
 <section class="music-sched" id="music">
   <div class="section-inner">
     <div class="fade-in" style="text-align:center">
-      <p class="section-label">Select Nights, Under the Stars</p>
+      <p class="section-label">Thursdays &amp; Sundays, Under the Stars</p>
       <h2 class="section-title">Live Music</h2>
-      <div class="section-divider"></div>
-      <p class="sched-month">September 2026 &middot; sets from 7 PM</p>
+      <div class="section-divider" style="margin: 0 auto 2rem"></div>
     </div>
-    <div class="sched-list fade-in">
-      <div class="gig" data-date="2026-09-03"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 3</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-04"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 4</div></div><div class="g-who">Ivan</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-06"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 6</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-10"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 10</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-11"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 11</div></div><div class="g-who">Raphaela</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-13"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 13</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-17"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 17</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-18"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 18</div></div><div class="g-who">Ivan</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-20"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 20</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-24"><div class="g-date"><div class="g-dow">Thu</div><div class="g-num">Sep 24</div></div><div class="g-who">Sandy</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-25"><div class="g-date"><div class="g-dow">Fri</div><div class="g-num">Sep 25</div></div><div class="g-who">Raphaela</div><div class="g-time">7 &ndash; 9 PM</div></div>
-      <div class="gig" data-date="2026-09-27"><div class="g-date"><div class="g-dow">Sun</div><div class="g-num">Sep 27</div></div><div class="g-who">Mr. Anderson</div><div class="g-time">7 &ndash; 9 PM</div></div>
+    <div class="nights fade-in">
+      <div class="night" data-dow="4"><div class="n-day">Thursday</div><div class="n-time">7 &ndash; 9 PM</div></div>
+      <div class="night" data-dow="0"><div class="n-day">Sunday</div><div class="n-time">7 &ndash; 9 PM</div></div>
     </div>
+    <p class="music-note fade-in">Live musicians on the terrace every Thursday and Sunday night. No cover charge.</p>
     <p class="sched-reserve fade-in"><a href="/reserve/" onclick="gtag('event','reserve_click',{page:'home',spot:'music'});">Reserve a table for music night</a></p>
   </div>
 </section>
 <script>
 (function(){
-  var now = new Date(Date.now() - 4*3600*1000); // Aruba UTC-4
-  var today = now.toISOString().slice(0,10);
-  document.querySelectorAll('.music-sched .gig').forEach(function(g){
-    var d = g.getAttribute('data-date');
-    if (d < today) g.classList.add('past');
-    else if (d === today) {
-      g.classList.add('tonight');
-      var b = document.createElement('span'); b.className = 'g-badge'; b.textContent = 'Tonight';
-      g.querySelector('.g-who').appendChild(b);
-    }
-  });
+  // "Tonight" on Thursday/Sunday, by Aruba time (UTC-4)
+  var dow = new Date(Date.now() - 4*3600*1000).getUTCDay();
+  var night = document.querySelector('.music-sched .night[data-dow="' + dow + '"]');
+  if (!night) return;
+  night.classList.add('tonight');
+  var badge = document.createElement('span'); badge.className = 'n-badge'; badge.textContent = 'Tonight';
+  night.appendChild(badge);
 })();
 </script>
 
