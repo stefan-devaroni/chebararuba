@@ -55,8 +55,27 @@ h1{font-family:'Cinzel',serif;font-weight:500;font-size:clamp(1.8rem,7vw,2.5rem)
 .day .dn{font-family:'Cinzel',serif;font-size:1.35rem;line-height:1.1;color:var(--gold-light)}
 .day .dm{font-size:.68rem;color:var(--text-dim)}
 .day[aria-pressed="true"] .dw,.day[aria-pressed="true"] .dn,.day[aria-pressed="true"] .dm{color:var(--night)}
-.other{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;font-size:.9rem;color:var(--text-dim)}
-.other input{font:inherit;font-size:16px;color:var(--text);background:rgba(42,37,32,.85);border:1px solid var(--line);border-radius:10px;padding:8px 10px;color-scheme:dark;min-width:0}
+.other-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;margin-top:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(42,37,32,.85);color:var(--text-dim);font:inherit;font-size:.92rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.other-btn .ov{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.04em;color:var(--gold-light)}
+.other-btn .ov::after{content:'\203A';display:inline-block;margin-left:10px;font-family:'DM Sans',sans-serif;font-size:1.15rem;line-height:1;color:var(--gold);transform:rotate(90deg);transition:transform .15s}
+.other-btn[aria-expanded="true"]{border-color:var(--gold-dim)}
+.other-btn[aria-expanded="true"] .ov::after{transform:rotate(-90deg)}
+.other-btn.picked{border-color:var(--gold);background:rgba(212,165,116,.12)}
+.cal{margin-top:10px;padding:12px 8px 10px;border:1px solid var(--line);border-radius:14px;background:rgba(26,22,18,.92)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-title{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.08em;color:var(--text-bright)}
+.cal-nav{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--gold);font:inherit;font-size:1.25rem;line-height:1;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cal-nav:disabled{opacity:.25;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-dow{margin-bottom:4px}
+.cal-dow span{text-align:center;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);padding:2px 0}
+.cal-day{aspect-ratio:1;min-width:0;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid transparent;background:rgba(42,37,32,.7);color:var(--text);font:inherit;font-size:.92rem;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s}
+.cal-day:hover:not(:disabled){border-color:var(--gold-dim)}
+.cal-day:focus-visible{outline:2px solid var(--gold-light);outline-offset:1px}
+.cal-day.today{border-color:var(--gold-dim);color:var(--gold-light)}
+.cal-day[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--night);font-weight:500}
+.cal-day:disabled{background:transparent;color:#57514b;cursor:default}
+.cal-day.pad{visibility:hidden}
 
 .hh-legend{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--coral);margin:-4px 0 12px}
 .hh-legend::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--coral);box-shadow:0 0 10px rgba(232,149,106,.7)}
@@ -128,7 +147,16 @@ footer a{color:var(--text-dim)}
     <section class="step" id="stepDay" aria-labelledby="h-day">
       <h2 id="h-day"><span class="n">2</span>Day</h2>
       <div class="days" id="days" role="group" aria-labelledby="h-day"></div>
-      <label class="other">Another date<input type="date" id="otherDate"></label>
+      <button type="button" class="other-btn" id="otherBtn" aria-expanded="false" aria-controls="cal"><span>Another date</span><span class="ov" id="otherVal">Pick a date</span></button>
+      <div class="cal" id="cal" hidden>
+        <div class="cal-head">
+          <button type="button" class="cal-nav" id="calPrev" aria-label="Previous month">&lsaquo;</button>
+          <div class="cal-title" id="calTitle" aria-live="polite"></div>
+          <button type="button" class="cal-nav" id="calNext" aria-label="Next month">&rsaquo;</button>
+        </div>
+        <div class="cal-grid cal-dow" aria-hidden="true"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+        <div class="cal-grid" id="calDays"></div>
+      </div>
     </section>
 
     <section class="step" id="stepTime" aria-labelledby="h-time">
@@ -238,10 +266,11 @@ footer a{color:var(--text-dim)}
       b.onclick = (function(dd){ return function(){ setDate(dd); }; })(d);
       box.appendChild(b);
     }
-    var other = $('otherDate');
-    other.min = cfg.today;
-    other.max = addDays(cfg.today, cfg.maxDaysAhead);
-    other.value = state.date && state.date >= addDays(cfg.today, DAY_CHIPS) ? state.date : '';
+    // A day past the strip shows on the "Another date" button instead
+    var beyond = !!state.date && state.date >= addDays(cfg.today, DAY_CHIPS);
+    $('otherVal').textContent = beyond ? fmtDate(state.date) : 'Pick a date';
+    $('otherBtn').classList.toggle('picked', beyond);
+    if (!$('cal').hidden) renderCal();
   }
   function setDate(d){
     if (!d) return;
@@ -251,12 +280,49 @@ footer a{color:var(--text-dim)}
     if (chip && chip.scrollIntoView) chip.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: smooth() });
     loadSlots();
   }
-  $('otherDate').addEventListener('change', function(e){
-    var d = e.target.value;
-    if (!d) return;
-    if (d < cfg.today || d > addDays(cfg.today, cfg.maxDaysAhead)) { showTimesMessage('We take online bookings up to ' + cfg.maxDaysAhead + ' days ahead.'); return; }
-    setDate(d);
-  });
+
+  // Month calendar for days past the strip (styled to match; the browser's own picker can't be)
+  var calMonth = null; // 'YYYY-MM'
+  function shiftMonth(ym, n){
+    var y = +ym.slice(0, 4), m = +ym.slice(5, 7) - 1 + n;
+    y += Math.floor(m / 12); m = ((m % 12) + 12) % 12;
+    return y + '-' + String(m + 1).padStart(2, '0');
+  }
+  function renderCal(){
+    var maxD = addDays(cfg.today, cfg.maxDaysAhead);
+    $('calTitle').textContent = new Date(calMonth + '-15T12:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    $('calPrev').disabled = calMonth <= cfg.today.slice(0, 7);
+    $('calNext').disabled = calMonth >= maxD.slice(0, 7);
+    var grid = $('calDays'); grid.innerHTML = '';
+    var lead = new Date(calMonth + '-01T12:00:00Z').getUTCDay();
+    var count = new Date(Date.UTC(+calMonth.slice(0, 4), +calMonth.slice(5, 7), 0)).getUTCDate();
+    for (var i = 0; i < lead; i++) grid.appendChild(el('span', { 'class': 'cal-day pad', 'aria-hidden': 'true' }));
+    for (var n = 1; n <= count; n++) {
+      var d = calMonth + '-' + String(n).padStart(2, '0');
+      var closed = cfg.closedDates.indexOf(d) !== -1;
+      var b = el('button', {
+        type: 'button',
+        'class': 'cal-day' + (d === cfg.today ? ' today' : ''),
+        'aria-pressed': String(state.date === d),
+        'aria-label': fmtDate(d, true) + (closed ? ', not available online' : '')
+      }, String(n));
+      if (d < cfg.today || d > maxD || closed) b.disabled = true;
+      b.onclick = (function(dd){ return function(){ toggleCal(false); setDate(dd); }; })(d);
+      grid.appendChild(b);
+    }
+  }
+  function toggleCal(open){
+    if (open === undefined) open = $('cal').hidden;
+    $('cal').hidden = !open;
+    $('otherBtn').setAttribute('aria-expanded', String(open));
+    if (open) {
+      calMonth = (state.date && state.date >= addDays(cfg.today, DAY_CHIPS) ? state.date : addDays(cfg.today, DAY_CHIPS)).slice(0, 7);
+      renderCal();
+    }
+  }
+  $('otherBtn').onclick = function(){ toggleCal(); };
+  $('calPrev').onclick = function(){ calMonth = shiftMonth(calMonth, -1); renderCal(); };
+  $('calNext').onclick = function(){ calMonth = shiftMonth(calMonth, 1); renderCal(); };
 
   // ---------- step 3: time ----------
   function showTimesMessage(html){ $('times').innerHTML = '<p class="note" style="margin-top:0">' + html + '</p>'; }
