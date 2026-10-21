@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2019435488650804');fbq('track','PageView');</script><noscript><img height="1" width="1" src="https://www.facebook.com/tr?id=2019435488650804&ev=PageView&noscript=1"/></noscript>
 <title>Join Our Team | Che Bar Aruba</title>
-<meta name="description" content="We're hiring! Apply to join the Che Bar team in Palm Beach, Aruba. Bartender and server positions available.">
+<meta name="description" content="We're hiring! Apply to join the Che Bar team in Palm Beach, Aruba. Server, bartender and kitchen positions.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -287,6 +287,50 @@ nav {
 
 .form-error.show { display: block; }
 
+/* Choice chips (checkboxes / radios) */
+.choices { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.choice { position: relative; }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice span {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 165, 116, 0.25);
+  background: var(--night-elevated);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.choice input:checked + span { background: var(--gold); border-color: var(--gold); color: var(--night); font-weight: 500; }
+.choice input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.form-hint { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.4rem; }
+.form-input[type="date"] { color-scheme: dark; min-height: 3rem; }
+.form-file {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px dashed rgba(212, 165, 116, 0.35);
+  border-radius: 12px;
+  background: var(--night-elevated);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+.form-file::file-selector-button {
+  margin-right: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--night);
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+}
+.consent { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.88rem; line-height: 1.5; color: var(--text); cursor: pointer; }
+.consent input { margin-top: 0.25rem; width: 18px; height: 18px; accent-color: var(--gold); flex-shrink: 0; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
 /* ═══ FOOTER ═══ */
 footer {
   padding: 2.5rem 2rem;
@@ -351,47 +395,97 @@ footer {
 <main class="form-container">
   <div class="form-card" id="formCard">
     <div class="form-error" id="formError">Something went wrong. Please try again.</div>
-    <form id="applicationForm">
+    <form id="applicationForm" novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <div class="form-group">
         <label class="form-label" for="name">Full Name *</label>
-        <input class="form-input" type="text" id="name" name="name" placeholder="Your full name" required>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" required>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="email">Email Address *</label>
-        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+        <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="phone">Phone Number *</label>
-          <input class="form-input" type="tel" id="phone" name="phone" placeholder="+297 ..." required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="age">Age *</label>
-          <input class="form-input" type="number" id="age" name="age" placeholder="25" min="16" max="99" required>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone or WhatsApp *</label>
+        <input class="form-input" type="tel" id="phone" name="phone" placeholder="+297 ..." autocomplete="tel" required>
+      </div>
+
+      <div class="form-group">
+        <span class="form-label">Are you 18 or older? *</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="adult" value="yes"><span>Yes</span></label>
+          <label class="choice"><input type="radio" name="adult" value="no"><span>No</span></label>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="position">Position *</label>
-        <select class="form-select" id="position" name="position" required>
-          <option value="" disabled selected>Select a position</option>
-          <option value="Waiter / Server">Waiter / Server</option>
-          <option value="Bartender">Bartender</option>
-          <option value="Both">Both</option>
-        </select>
+        <span class="form-label">Position *</span>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="positions" value="Server"><span>Server</span></label>
+          <label class="choice"><input type="checkbox" name="positions" value="Bartender"><span>Bartender</span></label>
+          <label class="choice"><input type="checkbox" name="positions" value="Kitchen"><span>Kitchen</span></label>
+          <label class="choice"><input type="checkbox" name="positions" value="Other"><span>Other</span></label>
+        </div>
+        <p class="form-hint">Pick all that interest you.</p>
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="experience">Previous Work Experience *</label>
-        <textarea class="form-textarea" id="experience" name="experience" placeholder="Tell us about your previous work experience in hospitality, food &amp; beverage, or related fields..." required></textarea>
+        <span class="form-label">Availability</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="availability" value="Full-time"><span>Full-time</span></label>
+          <label class="choice"><input type="radio" name="availability" value="Part-time"><span>Part-time</span></label>
+          <label class="choice"><input type="radio" name="availability" value="Either"><span>Either</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <span class="form-label">Which shifts can you work?</span>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="shifts" value="Mornings"><span>Mornings</span></label>
+          <label class="choice"><input type="checkbox" name="shifts" value="Nights"><span>Nights</span></label>
+          <label class="choice"><input type="checkbox" name="shifts" value="Weekends"><span>Weekends</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="start_date">When can you start?</label>
+        <input class="form-input" type="date" id="start_date" name="start_date">
+      </div>
+
+      <div class="form-group">
+        <span class="form-label">Languages you speak</span>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="languages" value="English"><span>English</span></label>
+          <label class="choice"><input type="checkbox" name="languages" value="Papiamento"><span>Papiamento</span></label>
+          <label class="choice"><input type="checkbox" name="languages" value="Spanish"><span>Spanish</span></label>
+          <label class="choice"><input type="checkbox" name="languages" value="Dutch"><span>Dutch</span></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="experience">Work Experience *</label>
+        <textarea class="form-textarea" id="experience" name="experience" placeholder="Where have you worked, and what did you do? No experience yet? Tell us that too." required></textarea>
       </div>
 
       <div class="form-group">
         <label class="form-label" for="about">Tell Us About Yourself</label>
         <textarea class="form-textarea" id="about" name="about" placeholder="What should we know about you? Why do you want to work at Che Bar?" style="min-height:80px;"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="cv">Your CV (optional)</label>
+        <input class="form-file" type="file" id="cv" name="cv" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.heic,application/pdf,image/*">
+        <p class="form-hint">PDF, Word file or a photo, up to 4 MB.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes">
+          <span>I agree that Che Bar keeps my application on file for future job openings. I can ask for it to be deleted at any time. *</span>
+        </label>
       </div>
 
       <button class="form-submit" type="submit" id="submitBtn">Submit Application</button>
@@ -412,41 +506,74 @@ footer {
 </footer>
 
 <script>
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwXRU7DVbBSQx2Er_H7fSb5abmJiVG1iaoi2UBvOGwQgtQEXeGuOTtmC4gT3NXbEqceiw/exec';
+const APPLY_URL = 'https://dashboard.chebararuba.com/api/public/applications';
+const MAX_CV = 4 * 1024 * 1024;
 
-document.getElementById('applicationForm').addEventListener('submit', async function(e) {
+const form = document.getElementById('applicationForm');
+const btn = document.getElementById('submitBtn');
+const errorEl = document.getElementById('formError');
+
+function showError(message) {
+  errorEl.textContent = message;
+  errorEl.classList.add('show');
+  errorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Phone photos of a CV are often bigger than 4 MB: shrink them before sending
+function shrinkImage(file) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const scale = Math.min(1, 2000 / Math.max(img.width, img.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((blob) => resolve(blob ? new File([blob], file.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }) : file), 'image/jpeg', 0.85);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+    img.src = url;
+  });
+}
+
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
-
-  const btn = document.getElementById('submitBtn');
-  const errorEl = document.getElementById('formError');
   errorEl.classList.remove('show');
+
+  const data = new FormData(form);
+  const filled = (name) => String(data.get(name) || '').trim();
+  if (filled('name').length < 2) return showError('Please enter your full name.');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(filled('email'))) return showError('Please enter a valid email address.');
+  if ((filled('phone').match(/\d/g) || []).length < 7) return showError('Please enter a phone or WhatsApp number.');
+  if (!data.get('adult')) return showError('Please tell us if you are 18 or older.');
+  if (data.getAll('positions').length === 0) return showError('Please choose at least one position.');
+  if (!filled('experience')) return showError('Please tell us about your work experience (or that you have none yet).');
+  if (data.get('consent') !== 'yes') return showError('Please agree that we can keep your application on file.');
+
+  let cv = data.get('cv');
+  if (cv && cv.size > 0) {
+    if (/^image\/(jpeg|png|webp)$/.test(cv.type) && cv.size > 3 * 1024 * 1024) cv = await shrinkImage(cv);
+    if (cv.size > MAX_CV) return showError('Your CV is larger than 4 MB. Please choose a smaller file, or a PDF.');
+    data.set('cv', cv, cv.name);
+  } else {
+    data.delete('cv');
+  }
+
   btn.disabled = true;
-  btn.textContent = 'Submitting...';
-
-  const data = {
-    name: document.getElementById('name').value.trim(),
-    email: document.getElementById('email').value.trim(),
-    phone: document.getElementById('phone').value.trim(),
-    age: document.getElementById('age').value,
-    position: document.getElementById('position').value,
-    experience: document.getElementById('experience').value.trim(),
-    about: document.getElementById('about').value.trim()
-  };
-
+  btn.textContent = 'Sending...';
   try {
-    await fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
+    const res = await fetch(APPLY_URL, { method: 'POST', body: data });
+    const result = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(result.error || 'Something went wrong. Please try again.');
 
+    if (window.fbq) fbq('track', 'SubmitApplication');
     document.getElementById('formCard').classList.add('hide');
     document.getElementById('thankYou').classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
   } catch (err) {
-    errorEl.classList.add('show');
+    showError(err.message && err.message !== 'Failed to fetch' ? err.message : 'Something went wrong. Please check your connection and try again.');
     btn.disabled = false;
     btn.textContent = 'Submit Application';
   }
