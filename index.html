@@ -1410,7 +1410,7 @@ footer {
   <div class="section-inner fade-in">
     <p class="section-label" style="text-align:center">Our Story</p>
     <p class="about-text">
-      Located in the heart of Palm Beach at Paseo Herencia Mall, Che Bar brings island soul to Aruba. Start your day with our beloved Dutch pancakes, fresh bagels, empanadas, breakfast burritos, and made-to-order eggs. Wind down at our daily happy hour from 5&ndash;7 PM, sip handcrafted cocktails late into the night, and catch live music on Thursday and Sunday nights. From sunrise breakfasts to fresh, hot, made-to-order wood-fired pizzas under the stars &mdash; every moment at Che Bar is a celebration.
+      Located in the heart of Palm Beach at Paseo Herencia Mall, Che Bar brings island soul to Aruba. Start your day with our beloved Dutch pancakes, fresh bagels, empanadas, breakfast burritos, and made-to-order eggs. Wind down at our daily happy hour from 5&ndash;7 PM, sip handcrafted cocktails late into the night, and catch live music on Thursday, Friday and Sunday nights. From sunrise breakfasts to fresh, hot, made-to-order wood-fired pizzas under the stars &mdash; every moment at Che Bar is a celebration.
     </p>
     <div style="text-align:center">
       <div class="about-rating">
@@ -1473,9 +1473,9 @@ footer {
       </div>
       <div class="exp-card exp-card--music fade-in" style="transition-delay: 0.3s">
         <span class="exp-icon">&#127928;</span>
-        <p class="exp-time">Thu &amp; Sun &middot; 7:00 &ndash; 9:00 PM</p>
+        <p class="exp-time">Thu, Fri &amp; Sun &middot; 7:00 &ndash; 9:00 PM</p>
         <h3 class="exp-name">Live Music</h3>
-        <p class="exp-desc">Live musicians on the terrace every Thursday and Sunday night. No cover charge.</p>
+        <p class="exp-desc">Live musicians on the terrace every Thursday, Friday and Sunday night. No cover charge.</p>
         <ul class="exp-highlights">
           <li>Live Bands</li>
           <li>Acoustic Sets</li>
@@ -1776,7 +1776,7 @@ footer {
 
 <!-- ═══ LIVE MUSIC ═══ -->
 <style>
-.music-sched .nights{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px;margin:0 auto}
+.music-sched .nights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:600px;margin:0 auto}
 .music-sched .night{border:1px solid rgba(212,165,116,.22);border-radius:12px;background:rgba(42,37,32,.5);padding:20px 12px;text-align:center}
 .music-sched .night .n-day{font-family:var(--font-display);font-size:1.3rem;color:var(--gold-light);letter-spacing:.06em}
 .music-sched .night .n-time{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);margin-top:6px}
@@ -1785,25 +1785,27 @@ footer {
 .music-sched .music-note{text-align:center;color:var(--text-dim);font-size:.95rem;line-height:1.6;max-width:420px;margin:18px auto 0}
 .music-sched .sched-reserve{text-align:center;margin-top:18px;font-size:.95rem}
 .music-sched .sched-reserve a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,165,116,.4);padding-bottom:2px}
+@media (max-width:480px){.music-sched .nights{gap:8px}.music-sched .night{padding:16px 4px}.music-sched .night .n-day{font-size:.9rem;letter-spacing:.02em}}
 </style>
 <section class="music-sched" id="music">
   <div class="section-inner">
     <div class="fade-in" style="text-align:center">
-      <p class="section-label">Thursdays &amp; Sundays, Under the Stars</p>
+      <p class="section-label">Thursdays, Fridays &amp; Sundays, Under the Stars</p>
       <h2 class="section-title">Live Music</h2>
       <div class="section-divider" style="margin: 0 auto 2rem"></div>
     </div>
     <div class="nights fade-in">
       <div class="night" data-dow="4"><div class="n-day">Thursday</div><div class="n-time">7 &ndash; 9 PM</div></div>
+      <div class="night" data-dow="5"><div class="n-day">Friday</div><div class="n-time">7 &ndash; 9 PM</div></div>
       <div class="night" data-dow="0"><div class="n-day">Sunday</div><div class="n-time">7 &ndash; 9 PM</div></div>
     </div>
-    <p class="music-note fade-in">Live musicians on the terrace every Thursday and Sunday night. No cover charge.</p>
+    <p class="music-note fade-in">Live musicians on the terrace every Thursday, Friday and Sunday night. No cover charge.</p>
     <p class="sched-reserve fade-in"><a href="/reserve/" onclick="gtag('event','reserve_click',{page:'home',spot:'music'});">Reserve a table for music night</a></p>
   </div>
 </section>
 <script>
 (function(){
-  // "Tonight" on Thursday/Sunday, by Aruba time (UTC-4)
+  // "Tonight" on music nights, by Aruba time (UTC-4)
   var dow = new Date(Date.now() - 4*3600*1000).getUTCDay();
   var night = document.querySelector('.music-sched .night[data-dow="' + dow + '"]');
   if (!night) return;
