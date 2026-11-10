@@ -21,15 +21,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<link rel="modulepreload" href="carousel.js?v=4">
+<link rel="modulepreload" href="build/carousel.js?v=6">
 <link rel="preload" as="image" href="assets/poster-d.webp" media="(min-aspect-ratio: 9/10)">
 <link rel="preload" as="image" href="assets/poster-m.webp" media="(max-aspect-ratio: 9/10)">
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-} }
-</script>
 <style>
   :root {
     --night: #0d0907; --surface: #211d18; --gold: #d4a574; --teal: #3B8EA5; --coral: #e06040;
@@ -125,6 +119,7 @@
   .no-gl #gl, .no-gl #poster, .no-gl .cap, .no-gl .dots, .no-gl .hint, .no-gl #loader, .no-gl .shade { display: none !important; }
   .no-gl #scroll { height: auto; }
   .no-gl .fallback { display: block; padding: 110px 20px 60px; max-width: 760px; margin: 0 auto; }
+  .fallback .why { color: var(--dim); font-size: 13px; margin: -18px 0 28px; }
   .fallback h1 { font-family: 'Cinzel', serif; color: var(--bright); font-size: 40px; margin-bottom: 30px; }
   .fallback figure { margin: 0 0 40px; }
   .fallback img { width: 100%; border-radius: 12px; display: block; }
@@ -201,6 +196,7 @@
 
   <div class="fallback">
     <h1>Five on the table</h1>
+    <p class="why" id="why"></p>
     <figure><img src="assets/pepperoni-photo.jpg" alt="Pepperoni pizza" loading="lazy"><figcaption><b>Pepperoni · $18</b>Tomato sauce, mozzarella, pepperoni and a sprinkle of Parmesan.</figcaption></figure>
     <figure><img src="assets/margherita-photo.jpg" alt="Margherita pizza" loading="lazy"><figcaption><b>Margherita · $20</b>Tomato sauce, fior di latte, basil and olive oil.</figcaption></figure>
     <figure><img src="assets/prosciutto-photo.jpg" alt="Prosciutto and rucula pizza with burrata" loading="lazy"><figcaption><b>Prosciutto &amp; Rucula · $24</b>Tomato sauce, prosciutto, arugula and a burrata in the middle.</figcaption></figure>
@@ -221,7 +217,21 @@
 <script>
   // no WebGL at all: show the photo list straight away
   (function () { try { var c = document.createElement('canvas'); if (!(c.getContext('webgl2') || c.getContext('webgl'))) throw 0 } catch (e) { document.documentElement.classList.add('no-gl') } })()
+  // if the 3D can't start, show the photos instead of waiting forever (and tell Google Analytics why)
+  ;(function () {
+    var root = document.documentElement
+    window.__turntableFail = function (why) {
+      if (root.classList.contains('ready') || root.classList.contains('no-gl')) return
+      root.classList.add('no-gl')
+      var w = document.getElementById('why'); if (w) w.textContent = 'The 3D table couldn’t start on this device (' + String(why).slice(0, 80) + '), so here are the photos.'
+      try { gtag('event', 'turntable_failed', { reason: String(why).slice(0, 90) }) } catch (e) {}
+    }
+    window.addEventListener('error', function (e) { if (!root.classList.contains('ready') && (!e.filename || /build|carousel|chunk/.test(e.filename))) __turntableFail(e.message || 'error') })
+    window.addEventListener('unhandledrejection', function (e) { if (!root.classList.contains('ready')) __turntableFail((e.reason && e.reason.message) || 'rejected') })
+    setTimeout(function () { if (!window.__table) __turntableFail('script did not start') }, 12000)
+    setTimeout(function () { if (!root.classList.contains('ready')) __turntableFail('too slow') }, 45000)
+  })()
 </script>
-<script type="module" src="carousel.js?v=4"></script>
+<script type="module" src="build/carousel.js?v=6" onerror="window.__turntableFail && __turntableFail('script failed to load')"></script>
 </body>
 </html>

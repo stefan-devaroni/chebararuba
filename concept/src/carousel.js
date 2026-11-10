@@ -184,7 +184,8 @@ function alphaDepth(map) {
 
 async function woodTexture() {
   const img = await image(`${A}wood${Q.tex}.webp`)
-  await Promise.all([document.fonts.load('600 100px Cinzel'), document.fonts.load('italic 400 100px "Cormorant Garamond"')]).catch(() => {})
+  // the stencil's fonts, but never wait more than 1.5 s for them
+  await Promise.race([Promise.all([document.fonts.load('600 100px Cinzel'), document.fonts.load('italic 400 100px "Cormorant Garamond"')]).catch(() => {}), new Promise((r) => setTimeout(r, 1500))])
   const S = Q.wood, c = document.createElement('canvas'); c.width = c.height = S
   const g = c.getContext('2d')
   g.drawImage(img, 0, 0, S, S)
