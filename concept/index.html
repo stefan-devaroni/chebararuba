@@ -21,10 +21,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<link rel="modulepreload" href="carousel.js">
+<link rel="modulepreload" href="carousel.js?v=4">
+<link rel="preload" as="image" href="assets/poster-d.webp" media="(min-aspect-ratio: 9/10)">
+<link rel="preload" as="image" href="assets/poster-m.webp" media="(max-aspect-ratio: 9/10)">
 <script type="importmap">
 { "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
   "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
 } }
 </script>
@@ -38,7 +40,9 @@
   body { background: var(--night); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
 
-  #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; opacity: 0; transition: opacity 1.4s ease; }
+  #poster { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; background: var(--night) url(assets/poster-d.webp) 50% 50% / cover no-repeat; transition: opacity 1.2s ease .3s; }
+  .ready #poster { opacity: 0; }
+  #gl { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100lvh; display: block; opacity: 0; transition: opacity 1.2s ease; }
   .ready #gl { opacity: 1; }
   /* soft darkening at the edges and behind the words */
   .shade { position: fixed; inset: 0; pointer-events: none; background:
@@ -60,6 +64,7 @@
 
   .cap { position: fixed; z-index: 4; left: clamp(20px, 6vw, 96px); top: 50%; translate: 0 -50%; width: min(440px, 40vw);
     opacity: 0; visibility: hidden; will-change: opacity, transform; }
+  html:not(.ready) .cap[data-s="-1"] { opacity: 1; visibility: visible; }
   .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
   .eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--gold); opacity: .7; }
   .cap h1, .cap h2 { font-family: 'Cinzel', serif; font-weight: 600; color: var(--bright); line-height: 1.04; letter-spacing: .02em; }
@@ -90,15 +95,18 @@
   .dots button:hover, .dots button:focus-visible { color: var(--text); }
   .dots button:focus-visible::after { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-  #loader { position: fixed; z-index: 6; inset: 0; display: grid; place-items: center; background: var(--night); transition: opacity .9s ease .2s, visibility 0s 1.1s; }
+  #loader { position: fixed; z-index: 6; left: 50%; bottom: max(70px, calc(env(safe-area-inset-bottom) + 56px)); translate: -50% 0; pointer-events: none;
+    transition: opacity .6s ease, visibility 0s .7s; }
   #loader div { text-align: center; }
-  #loader p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--gold); margin-bottom: 16px; }
-  #loader span { display: block; width: 160px; height: 1px; background: rgba(212,165,116,.2); margin: 0 auto; overflow: hidden; }
+  #loader p { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+  #loader span { display: block; width: 120px; height: 1px; background: rgba(212,165,116,.2); margin: 0 auto; overflow: hidden; }
   #loader i { display: block; height: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
   .ready #loader { opacity: 0; visibility: hidden; }
 
   /* phones: words at the bottom, the dish above them */
   @media (max-aspect-ratio: 9/10) {
+    #poster { background-image: url(assets/poster-m.webp); }
+    #loader { bottom: auto; top: 46%; }
     .shade { background: radial-gradient(130% 80% at 50% 38%, transparent 45%, rgba(8,5,3,.42) 100%),
       linear-gradient(0deg, rgba(10,7,5,.9) 0%, rgba(10,7,5,.55) 30%, transparent 50%); }
     .cap { left: 20px; right: 20px; width: auto; top: auto; bottom: max(30px, calc(env(safe-area-inset-bottom) + 18px)); translate: 0 0; text-align: left; }
@@ -114,7 +122,7 @@
 
   /* no 3D: the photos in a simple list */
   .fallback { display: none; }
-  .no-gl #gl, .no-gl .cap, .no-gl .dots, .no-gl .hint, .no-gl #loader, .no-gl .shade { display: none !important; }
+  .no-gl #gl, .no-gl #poster, .no-gl .cap, .no-gl .dots, .no-gl .hint, .no-gl #loader, .no-gl .shade { display: none !important; }
   .no-gl #scroll { height: auto; }
   .no-gl .fallback { display: block; padding: 110px 20px 60px; max-width: 760px; margin: 0 auto; }
   .fallback h1 { font-family: 'Cinzel', serif; color: var(--bright); font-size: 40px; margin-bottom: 30px; }
@@ -125,6 +133,7 @@
 </style>
 </head>
 <body>
+<div id="poster" aria-hidden="true"></div>
 <canvas id="gl" aria-label="A wooden turntable with five Che Bar dishes. Scroll to turn it."></canvas>
 <div class="shade"></div>
 <div class="grain"></div>
@@ -134,7 +143,7 @@
   <a class="reserve" href="/reserve/">Reserve</a>
 </header>
 
-<div id="loader" aria-hidden="true"><div><p>Setting the table…</p><span><i></i></span></div></div>
+<div id="loader" aria-hidden="true"><div><p>Loading 3D</p><span><i></i></span></div></div>
 
 <div id="scroll">
   <section class="cap" data-s="-1">
@@ -213,6 +222,6 @@
   // no WebGL at all: show the photo list straight away
   (function () { try { var c = document.createElement('canvas'); if (!(c.getContext('webgl2') || c.getContext('webgl'))) throw 0 } catch (e) { document.documentElement.classList.add('no-gl') } })()
 </script>
-<script type="module" src="carousel.js"></script>
+<script type="module" src="carousel.js?v=4"></script>
 </body>
 </html>
