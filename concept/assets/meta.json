@@ -1,0 +1,26 @@
+{
+ "pepperoni": {
+  "name": "pepperoni",
+  "inner": 0.86,
+  "hmax": 0.36
+ },
+ "margherita": {
+  "name": "margherita",
+  "inner": 0.85,
+  "hmax": 0.36
+ },
+ "prosciutto": {
+  "name": "prosciutto",
+  "inner": 0.87,
+  "hmax": 0.36
+ },
+ "hawaiian": {
+  "name": "hawaiian",
+  "inner": 0.8,
+  "hmax": 0.36
+ },
+ "empanadas": {
+  "name": "empanadas",
+  "hmax": 0.36
+ }
+}

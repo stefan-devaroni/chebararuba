@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Our Chimichurri · Che Bar Aruba</title>
+<meta name="description" content="How Che Bar makes its chimichurri: parsley, spring onions, garlic, red wine vinegar, olive oil and a pinch of salt. Scroll to watch.">
+<meta property="og:title" content="How we make our chimichurri · Che Bar Aruba">
+<meta property="og:description" content="Parsley, spring onions, garlic, red wine vinegar, olive oil and a pinch of salt. Scroll to watch.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://chebararuba.com/concept/chimichurri/">
+<meta property="og:image" content="https://chebararuba.com/concept/chimichurri/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0d0907">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H1DM2MNTK7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H1DM2MNTK7');</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="frames/d/000.webp" media="(min-width: 761px)">
+<link rel="preload" as="image" href="frames/m/000.webp" media="(max-width: 760px)">
+<style>
+  :root { --night: #0d0907; --gold: #d4a574; --text: #c4beb8; --bright: #f0ece8; --dim: #9a9490; --stage: min(88vh, 58vw); --hint: 1; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--night); color-scheme: dark; }
+  body { background: var(--night); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+
+  /* the square "film", floating in the dark */
+  .stage { position: fixed; z-index: 1; top: 50%; right: clamp(16px, 5vw, 80px); translate: 0 -50%; width: var(--stage); height: var(--stage);
+    --fade: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: var(--fade); -webkit-mask-composite: source-in; mask-image: var(--fade); mask-composite: intersect; }
+  .stage canvas { width: 100%; height: 100%; display: block; transform-origin: 80% 33%; will-change: transform; }
+  .glow { position: fixed; z-index: 0; inset: 0; pointer-events: none;
+    background: radial-gradient(60vw 60vh at 68% 50%, rgba(212,165,116,.10), transparent 70%); }
+  .grain { position: fixed; z-index: 3; inset: -50%; pointer-events: none; opacity: .06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  header.top { position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between;
+    padding: max(18px, env(safe-area-inset-top)) clamp(18px, 4vw, 44px) 18px; }
+  .logo { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: .28em; font-size: 15px; color: var(--bright); text-decoration: none; }
+  .logo small { display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; letter-spacing: .08em; font-size: 13px; color: var(--gold); margin-top: 1px; }
+  .reserve { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--bright); text-decoration: none; border: 1px solid rgba(212,165,116,.55);
+    padding: 10px 16px; border-radius: 999px; background: rgba(13,9,7,.35); backdrop-filter: blur(6px); }
+
+  #scroll { position: relative; z-index: 2; height: 1300vh; }
+
+  .cap { position: fixed; z-index: 4; left: clamp(20px, 6vw, 96px); top: 50%; translate: 0 -50%; width: min(420px, calc(100vw - var(--stage) - 14vw));
+    opacity: 0; visibility: hidden; will-change: opacity, transform; }
+  .step { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--gold); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .step::after { content: ''; width: 40px; height: 1px; background: var(--gold); opacity: .6; }
+  .eyebrow { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .cap h1, .cap h2 { font-family: 'Cinzel', serif; font-weight: 600; color: var(--bright); line-height: 1.06; letter-spacing: .02em; }
+  .cap h1 { font-size: clamp(38px, 4.4vw, 66px); }
+  .cap h2 { font-size: clamp(34px, 3.8vw, 56px); }
+  .cap p { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.6; margin-top: 14px; max-width: 34ch; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .ctas a { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 13px 18px; border-radius: 12px;
+    border: 1px solid rgba(212,165,116,.5); color: var(--bright); background: rgba(13,9,7,.45); }
+  .ctas a.main { background: var(--gold); border-color: var(--gold); color: #1a1612; font-weight: 500; }
+  .back { display: inline-block; margin-top: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: var(--gold); text-decoration: none; }
+  .back:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .bar { position: fixed; z-index: 4; left: clamp(20px, 6vw, 96px); bottom: max(28px, env(safe-area-inset-bottom)); width: min(240px, 40vw); height: 1px; background: rgba(212,165,116,.2); }
+  .bar i { position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+  .hint { position: fixed; z-index: 4; left: 50%; bottom: max(26px, env(safe-area-inset-bottom)); translate: -50% 0; opacity: var(--hint); pointer-events: none;
+    font-size: 11px; letter-spacing: .34em; text-transform: uppercase; color: var(--dim); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .hint i { width: 1px; height: 38px; background: linear-gradient(var(--gold), transparent); animation: drip 2.2s ease-in-out infinite; transform-origin: top; }
+  @keyframes drip { 0% { transform: scaleY(0); opacity: 1 } 70% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
+  .loading { position: fixed; z-index: 4; right: clamp(16px, 5vw, 80px); bottom: max(24px, env(safe-area-inset-bottom)); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--dim); transition: opacity .6s; }
+  .loading.done { opacity: 0; }
+
+  /* phones: the film on top, the words underneath */
+  @media (max-aspect-ratio: 9/10) {
+    :root { --stage: min(100vw, 62vh); }
+    .stage { top: max(64px, calc(env(safe-area-inset-top) + 50px)); right: 50%; translate: 50% 0;
+      --fade: linear-gradient(180deg, #000 84%, transparent); -webkit-mask-image: var(--fade); mask-image: var(--fade); }
+    .glow { background: radial-gradient(90vw 50vh at 50% 30%, rgba(212,165,116,.10), transparent 70%); }
+    .cap { left: 20px; right: 20px; width: auto; top: calc(max(64px, calc(env(safe-area-inset-top) + 50px)) + var(--stage) - 8px); translate: 0 0; }
+    .cap h1 { font-size: 34px; } .cap h2 { font-size: 30px; }
+    .cap p { font-size: 15.5px; margin-top: 8px; }
+    .step { font-size: 19px; margin-bottom: 4px; }
+    .eyebrow { margin-bottom: 10px; }
+    .ctas { margin-top: 16px; } .ctas a { padding: 11px 14px; font-size: 12px; }
+    .back { font-size: 19px; margin-top: 12px; }
+    .bar { left: 20px; bottom: max(20px, env(safe-area-inset-bottom)); }
+    .hint { display: none; }
+    .loading { right: 20px; bottom: max(14px, env(safe-area-inset-bottom)); }
+    .reserve { padding: 8px 13px; font-size: 11px; }
+  }
+  @media (max-aspect-ratio: 9/10) and (max-height: 700px) { .cap p { display: none; } }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="stage"><canvas id="film" aria-label="Chimichurri being made on a wooden board, step by step. Scroll to play."></canvas></div>
+<div class="grain"></div>
+
+<header class="top">
+  <a class="logo" href="/">CHE BAR<small>Palm Beach · Aruba</small></a>
+  <a class="reserve" href="/reserve/">Reserve</a>
+</header>
+
+<div id="scroll">
+  <!-- data-a / data-b: where each caption shows, as a share of the whole scroll -->
+  <section class="cap" data-a="0" data-b="0.045">
+    <div class="eyebrow">From our kitchen</div>
+    <h1>How we make our chimichurri</h1>
+    <p>Six ingredients, a board and a sharp knife. Scroll to watch.</p>
+  </section>
+  <section class="cap" data-clip="1"><div class="step">01</div><h2>Parsley</h2><p>Flat-leaf parsley, chopped fine.</p></section>
+  <section class="cap" data-clip="2"><div class="step">02</div><h2>Spring onions</h2><p>Sliced thin.</p></section>
+  <section class="cap" data-clip="3"><div class="step">03</div><h2>Garlic</h2><p>Minced.</p></section>
+  <section class="cap" data-clip="4"><div class="step">04</div><h2>Into the bowl</h2><p>Everything off the board and into a glass bowl.</p></section>
+  <section class="cap" data-clip="5"><div class="step">05</div><h2>Red wine vinegar</h2><p>A splash.</p></section>
+  <section class="cap" data-clip="6"><div class="step">06</div><h2>Olive oil</h2><p>Enough to cover the herbs.</p></section>
+  <section class="cap" data-clip="7"><div class="step">07</div><h2>Salt</h2><p>A pinch.</p></section>
+  <section class="cap" data-clip="8"><div class="step">08</div><h2>Stir</h2><p>Mix it all together.</p></section>
+  <section class="cap" data-clip="9"><div class="step">09</div><h2>Dip</h2><p>And in goes an empanada.</p></section>
+  <section class="cap" data-a="0.93" data-b="1.01">
+    <div class="eyebrow">Che Bar · Palm Beach</div>
+    <h2>Our chimichurri</h2>
+    <p>Ask for it with your empanadas, or take a jar home.</p>
+    <div class="ctas">
+      <a class="main" href="/reserve/">Reserve a table</a>
+      <a href="https://portal.vapvapeats.com/app/restaurant?id=665&amp;partner_slug=chebar-ww9" rel="noopener">Order on VapVap</a>
+    </div>
+    <a class="back" href="/concept/">← The pizza turntable</a>
+  </section>
+</div>
+
+<div class="bar" aria-hidden="true"><i></i></div>
+<div class="hint" aria-hidden="true">Scroll<i></i></div>
+<div class="loading" aria-hidden="true">Loading</div>
+
+<script>
+(() => {
+  const FRAMES = 271, CLIPS = 9, PER = 30          // frame 0, then 30 frames per clip
+  const START = 0.045, END = 0.93                 // the film plays between these scroll shares; holds before and after
+  const small = matchMedia('(max-width: 760px), (pointer: coarse)').matches
+  const dir = small ? 'frames/m/' : 'frames/d/'
+  const canvas = document.getElementById('film'), g = canvas.getContext('2d')
+  const imgs = new Array(FRAMES), ready = new Uint8Array(FRAMES)
+  const loadingEl = document.querySelector('.loading'), barEl = document.querySelector('.bar i')
+
+  // load coarse-to-fine, so the whole story can be scrolled early and fills in
+  const order = [], seen = new Uint8Array(FRAMES)
+  for (const step of [30, 10, 5, 2, 1]) for (let i = 0; i < FRAMES; i += step) if (!seen[i]) { seen[i] = 1; order.push(i) }
+  if (!seen[FRAMES - 1]) order.push(FRAMES - 1)
+  let loaded = 0, next = 0
+  function loadOne() {
+    if (next >= order.length) return
+    const i = order[next++], im = new Image()
+    im.decoding = 'async'
+    im.onload = () => { imgs[i] = im; ready[i] = 1; loaded++; dirty = true; if (loaded > order.length * 0.98) loadingEl.classList.add('done'); else loadingEl.textContent = `Loading ${Math.round(loaded / order.length * 100)}%`; loadOne() }
+    im.onerror = () => loadOne()
+    im.src = `${dir}${String(i).padStart(3, '0')}.webp`
+  }
+  for (let k = 0; k < 6; k++) loadOne()
+
+  function size() {
+    const r = canvas.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2)
+    canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr); dirty = true
+  }
+  const caps = [...document.querySelectorAll('.cap')].map((el) => {
+    let a = Number(el.dataset.a), b = Number(el.dataset.b)
+    if (el.dataset.clip) { const c = Number(el.dataset.clip), w = (END - START) / CLIPS; a = START + (c - 1) * w; b = START + c * w }
+    return { el, a, b }
+  })
+  const progress = () => { const max = document.documentElement.scrollHeight - innerHeight; return Math.min(1, Math.max(0, scrollY / Math.max(1, max))) }
+  const frameAt = (p) => Math.min(FRAMES - 1, Math.max(0, (p - START) / (END - START) * (FRAMES - 1)))
+
+  let pNow = progress(), pGoal = pNow, dirty = true, last = performance.now()
+  addEventListener('scroll', () => { pGoal = progress() }, { passive: true })
+  addEventListener('resize', size)
+
+  function nearest(i, dirn) { for (let k = i; k >= 0 && k < FRAMES; k += dirn) if (ready[k]) return k; return -1 }
+  function draw(f) {
+    const i = Math.floor(f), t = f - i
+    let a = nearest(i, -1); if (a < 0) a = nearest(i, 1); if (a < 0) return
+    const b = nearest(Math.min(FRAMES - 1, i + 1), 1)
+    g.globalAlpha = 1; g.drawImage(imgs[a], 0, 0, canvas.width, canvas.height)
+    if (b > a && b - a <= 3) { g.globalAlpha = Math.min(1, (f - a) / (b - a)); g.drawImage(imgs[b], 0, 0, canvas.width, canvas.height); g.globalAlpha = 1 } // smooth between frames
+  }
+  function tick(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now
+    const before = pNow
+    pNow += (pGoal - pNow) * (1 - Math.exp(-dt * 7))
+    if (Math.abs(pNow - before) > 1e-5 || dirty) {
+      dirty = false
+      draw(frameAt(pNow))
+      // a slow push in over the whole film, closer on the bowl at the end
+      const zoom = 1 + 0.04 * Math.min(1, pNow / END) + 0.12 * Math.max(0, Math.min(1, (pNow - END) / (1 - END)))
+      canvas.style.transform = `scale(${zoom.toFixed(4)})`
+      for (const c of caps) {
+        const fadeIn = c.a <= 0 ? 1 : Math.min(1, (pNow - c.a) / 0.012), fadeOut = Math.min(1, (c.b - pNow) / 0.012), k = Math.max(0, Math.min(fadeIn, fadeOut))
+        c.el.style.opacity = k.toFixed(3); c.el.style.visibility = k > 0.01 ? 'visible' : 'hidden'
+        c.el.style.transform = `translateY(${((1 - k) * 14).toFixed(1)}px)`
+      }
+      barEl.style.transform = `scaleX(${pNow.toFixed(4)})`
+      document.documentElement.style.setProperty('--hint', Math.max(0, 1 - pNow / START).toFixed(3))
+    }
+    requestAnimationFrame(tick)
+  }
+  size(); requestAnimationFrame(tick)
+})()
+</script>
+</body>
+</html>
