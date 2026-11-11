@@ -71,47 +71,157 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/breakfast-near-your-hotel/"/>
   </url>
   <url>
-    <loc>https://chebararuba.com/blog/</loc>
-    <lastmod>2026-11-11</lastmod>
-  </url>
-  <url>
     <loc>https://chebararuba.com/reserve/</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/reserve/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/reservar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/reserve/"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/reservar/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/reserve/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/reservar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/reserve/"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/blog/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/best-beaches-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/best-beaches-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/mejores-playas-de-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/best-beaches-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/mejores-playas-de-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/best-beaches-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/mejores-playas-de-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/best-beaches-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/best-breakfast-palm-beach-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/best-breakfast-palm-beach-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/mejor-desayuno-en-palm-beach-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/best-breakfast-palm-beach-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/mejor-desayuno-en-palm-beach-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/best-breakfast-palm-beach-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/mejor-desayuno-en-palm-beach-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/best-breakfast-palm-beach-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/dutch-pancakes-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/dutch-pancakes-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/panqueques-holandeses-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/dutch-pancakes-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/panqueques-holandeses-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/dutch-pancakes-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/panqueques-holandeses-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/dutch-pancakes-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/first-time-in-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/first-time-in-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/primera-vez-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/first-time-in-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/primera-vez-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/first-time-in-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/primera-vez-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/first-time-in-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/happy-hour-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/happy-hour-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/happy-hour-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/happy-hour-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/happy-hour-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/happy-hour-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/happy-hour-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/happy-hour-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/hotel-vs-airbnb-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/hotel-vs-airbnb-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/hotel-o-airbnb-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/hotel-vs-airbnb-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/hotel-o-airbnb-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/hotel-vs-airbnb-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/hotel-o-airbnb-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/hotel-vs-airbnb-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/pizza-delivery-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/pizza-delivery-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/pizza-a-domicilio-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/pizza-delivery-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/pizza-a-domicilio-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/pizza-delivery-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/pizza-a-domicilio-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/pizza-delivery-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/taxi-vs-rental-car-aruba.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/taxi-vs-rental-car-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/taxi-o-auto-de-alquiler-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/taxi-vs-rental-car-aruba.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/taxi-o-auto-de-alquiler-en-aruba.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/taxi-vs-rental-car-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/taxi-o-auto-de-alquiler-en-aruba.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/taxi-vs-rental-car-aruba.html"/>
   </url>
   <url>
     <loc>https://chebararuba.com/blog/what-makes-che-bar-special.html</loc>
     <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/what-makes-che-bar-special.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/que-hace-especial-a-che-bar.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/what-makes-che-bar-special.html"/>
+  </url>
+  <url>
+    <loc>https://chebararuba.com/es/blog/que-hace-especial-a-che-bar.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chebararuba.com/blog/what-makes-che-bar-special.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://chebararuba.com/es/blog/que-hace-especial-a-che-bar.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chebararuba.com/blog/what-makes-che-bar-special.html"/>
   </url>
 </urlset>

@@ -14,6 +14,9 @@
 <meta property="og:url" content="https://chebararuba.com/reserve/">
 <meta property="og:image" content="https://chebararuba.com/images/food/exterior.jpg">
 <link rel="canonical" href="https://chebararuba.com/reserve/">
+<link rel="alternate" hreflang="en" href="https://chebararuba.com/reserve/">
+<link rel="alternate" hreflang="es" href="https://chebararuba.com/es/reservar/">
+<link rel="alternate" hreflang="x-default" href="https://chebararuba.com/reserve/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,7 +133,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
 </style>
 </head>
 <body>
-<header><a href="/">CHE BAR</a><a class="lang-switch" href="/es/" hreflang="es" lang="es" title="Ver en español"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z"/></svg>ES</a></header>
+<header><a href="/">CHE BAR</a><a class="lang-switch" href="/es/reservar/" hreflang="es" lang="es" title="Ver en español"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.6 4 6 4 9.5s-1.4 6.9-4 9.5c-2.6-2.6-4-6-4-9.5s1.4-6.9 4-9.5z"/></svg>ES</a></header>
 <main>
   <div class="intro" id="intro">
     <p class="kicker">Paseo Herencia · Palm Beach</p>
@@ -188,8 +191,74 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     ? 'http://localhost:3472/api/public/reservations'
     : 'https://dashboard.chebararuba.com/api/public/reservations';
   var EMAIL = 'chebararuba@gmail.com';
+  // ---------- words (English or Spanish, from <html lang>) ----------
+  var LANG = document.documentElement.lang === 'es' ? 'es' : 'en';
+  var LOCALE = LANG === 'es' ? 'es' : 'en-US';
+  var T = {
+    en: {
+      parts: ['Morning', 'Afternoon', 'Evening'], guest: ' guest', guests: ' guests', today: 'Today', tmrw: 'Tmrw',
+      notOnline: ', not available online', pickDate: 'Pick a date',
+      loadFail: 'Could not load times. Please try again.', noneThatDay: 'No online bookings that day. Walk-ins are welcome.',
+      loadOffline: 'Could not load times. Check your connection and try again.',
+      noneLeft: 'No more times left online for this day. Walk-ins are welcome, or pick another day.',
+      full: function(today){ return 'We’re fully booked online for ' + (today ? 'today' : 'this day') + '. Walk-ins are welcome, or pick another day.'; },
+      hhLegend: 'Happy Hour · 5 – 7 PM daily', hhTag: 'Happy hour', hhAria: ', happy hour', fullAria: ', full',
+      booking: 'Booking…', bigGroup: 'Message us for big groups', pickTime: 'Pick a time', book: 'Book ', addDetails: 'Add your name & email',
+      wrong: 'Something went wrong. Please try again.', offline: 'Could not reach us. Check your connection and try again.',
+      byEmail: 'Book by email', notNow: 'Online booking is not available right now.', mailSubject: 'Table reservation',
+      mailBody: "Hi Che Bar! I'd like to book a table.", emailUs: 'Email us',
+      groupMsg: function(n, date){ return "Hi Che Bar! I'd like to book a table for a group of " + n + '+' + (date ? ' on ' + date : '') + '.'; },
+      groupNote: function(n){ return 'For groups of ' + n + ' or more, email us and we’ll set up the table: '; }, groupSubject: 'Group booking',
+      booked: 'You’re booked!', tableFor: 'Table for ', addCal: 'Add to calendar',
+      emailed: function(email){ return 'We’ve emailed your confirmation to <b style="color:var(--text)">' + email + '</b>. Need to change or cancel? Use the link in the email, or this one:'; },
+      notEmailed: 'This page is your confirmation, so take a screenshot. Need to change or cancel? Use this link:',
+      copy: 'Copy', copied: 'Copied', seeYou: 'See you at Paseo Herencia Mall, Palm Beach · ', directions: 'Directions',
+      calSummary: 'Che Bar — table for ', changeCancel: 'Change or cancel: ',
+      loadingBooking: 'Loading your booking…', notFound: 'Booking not found', notFoundText: 'We couldn’t find this booking.',
+      newBooking: 'Make a new booking', manageFail: 'Could not load your booking. Check your connection and refresh.',
+      yourBooking: 'Your booking', status: { confirmed: 'Confirmed', seated: 'Checked in', no_show: 'Missed', cancelled: 'Cancelled' },
+      differentTime: 'Want a different time? Cancel this one and book again, or ', emailUsLower: 'email us', changeSubject: 'Change my booking',
+      cancelBtn: 'Cancel this booking', cancelling: 'Cancelling…',
+      confirmCancel: function(p, d, t){ return 'Cancel your table for ' + p + ' on ' + d + ' at ' + t + '?'; },
+      cancelFail: 'Could not cancel. Please email us at ' + EMAIL + '.',
+      paused: 'Online booking is paused right now. Walk-ins are welcome, or message us to book.',
+      fineEmail: 'Instant confirmation by email. No deposit, no service charge.',
+      noSystem: 'Could not reach our booking system. Please try again in a moment.'
+    },
+    es: {
+      parts: ['Mañana', 'Tarde', 'Noche'], guest: ' persona', guests: ' personas', today: 'Hoy', tmrw: 'Mañ.',
+      notOnline: ', no disponible en línea', pickDate: 'Elige una fecha',
+      loadFail: 'No pudimos cargar los horarios. Inténtalo de nuevo.', noneThatDay: 'No hay reservas en línea ese día. Puedes venir sin reserva.',
+      loadOffline: 'No pudimos cargar los horarios. Revisa tu conexión e inténtalo de nuevo.',
+      noneLeft: 'Ya no quedan horarios en línea para este día. Puedes venir sin reserva o elegir otro día.',
+      full: function(today){ return 'Estamos completos en línea para ' + (today ? 'hoy' : 'este día') + '. Puedes venir sin reserva o elegir otro día.'; },
+      hhLegend: 'Happy hour · 5 – 7 PM todos los días', hhTag: 'Happy hour', hhAria: ', happy hour', fullAria: ', completo',
+      booking: 'Reservando…', bigGroup: 'Escríbenos para grupos grandes', pickTime: 'Elige una hora', book: 'Reservar ', addDetails: 'Agrega tu nombre y correo',
+      wrong: 'Algo salió mal. Inténtalo de nuevo.', offline: 'No pudimos conectarnos. Revisa tu conexión e inténtalo de nuevo.',
+      byEmail: 'Reserva por correo', notNow: 'Las reservas en línea no están disponibles en este momento.', mailSubject: 'Reserva de mesa',
+      mailBody: '¡Hola Che Bar! Quisiera reservar una mesa.', emailUs: 'Escríbenos',
+      groupMsg: function(n, date){ return '¡Hola Che Bar! Quisiera reservar una mesa para un grupo de ' + n + '+' + (date ? ' el ' + date : '') + '.'; },
+      groupNote: function(n){ return 'Para grupos de ' + n + ' o más, escríbenos y preparamos la mesa: '; }, groupSubject: 'Reserva de grupo',
+      booked: '¡Listo, tienes tu mesa!', tableFor: 'Mesa para ', addCal: 'Agregar al calendario',
+      emailed: function(email){ return 'Te enviamos la confirmación a <b style="color:var(--text)">' + email + '</b>. ¿Necesitas cambiarla o cancelarla? Usa el enlace del correo o este:'; },
+      notEmailed: 'Esta página es tu confirmación: toma una captura de pantalla. ¿Necesitas cambiarla o cancelarla? Usa este enlace:',
+      copy: 'Copiar', copied: 'Copiado', seeYou: 'Te esperamos en Paseo Herencia Mall, Palm Beach · ', directions: 'Cómo llegar',
+      calSummary: 'Che Bar — mesa para ', changeCancel: 'Cambiar o cancelar: ',
+      loadingBooking: 'Cargando tu reserva…', notFound: 'No encontramos la reserva', notFoundText: 'No pudimos encontrar esta reserva.',
+      newBooking: 'Hacer una nueva reserva', manageFail: 'No pudimos cargar tu reserva. Revisa tu conexión y vuelve a cargar la página.',
+      yourBooking: 'Tu reserva', status: { confirmed: 'Confirmada', seated: 'Registrada', no_show: 'No asistió', cancelled: 'Cancelada' },
+      differentTime: '¿Quieres otra hora? Cancela esta y reserva de nuevo, o ', emailUsLower: 'escríbenos', changeSubject: 'Cambiar mi reserva',
+      cancelBtn: 'Cancelar esta reserva', cancelling: 'Cancelando…',
+      confirmCancel: function(p, d, t){ return '¿Cancelar tu mesa para ' + p + ' el ' + d + ' a las ' + t + '?'; },
+      cancelFail: 'No pudimos cancelar. Escríbenos a ' + EMAIL + '.',
+      paused: 'Las reservas en línea están en pausa. Puedes venir sin reserva o escribirnos para reservar.',
+      fineEmail: 'Confirmación inmediata por correo. Sin depósito ni cargo por servicio.',
+      noSystem: 'No pudimos conectar con el sistema de reservas. Inténtalo de nuevo en un momento.'
+    }
+  }[LANG];
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
   var HAPPY_HOUR = ['17:00', '18:59']; // highlighted times, 5–7 PM daily
-  var PARTS = [['Morning', 0, 719], ['Afternoon', 720, 1019], ['Evening', 1020, 1439]];
+  var PARTS = [[T.parts[0], 0, 719], [T.parts[1], 720, 1019], [T.parts[2], 1020, 1439]];
   var DAY_CHIPS = 14;
   var $ = function(id){ return document.getElementById(id); };
 
@@ -202,8 +271,9 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   function arubaToday(){ return new Date(Date.now() - 4 * 3600 * 1000).toISOString().slice(0, 10); }
   function addDays(d, n){ var x = new Date(d + 'T00:00:00Z'); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); }
   function fmtDate(d, long){
-    return new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { weekday: long ? 'long' : 'short', month: long ? 'long' : 'short', day: 'numeric', timeZone: 'UTC' });
+    return new Date(d + 'T12:00:00Z').toLocaleDateString(LOCALE, { weekday: long ? 'long' : 'short', month: long ? 'long' : 'short', day: 'numeric', timeZone: 'UTC' });
   }
+  function shortPart(d, part){ return cap(new Date(d + 'T12:00:00Z').toLocaleDateString(LOCALE, { [part]: 'short', timeZone: 'UTC' }).replace('.', '')).slice(0, 3); }
   function fmtTime(t){ var h = +t.slice(0, 2), m = t.slice(3); return (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM'); }
   function mins(t){ return +t.slice(0, 2) * 60 + +t.slice(3); }
   function isHappyHour(t){ return t >= HAPPY_HOUR[0] && t <= HAPPY_HOUR[1]; }
@@ -222,8 +292,8 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   function unavailable(message){
     $('book').hidden = true;
     var box = $('manage'); box.hidden = false;
-    box.innerHTML = '<div class="panel"><h2>Book by email</h2><p class="keep">' + esc(message || 'Online booking is not available right now.') +
-      '</p><a class="cta" href="' + mailto('Table reservation', "Hi Che Bar! I'd like to book a table.") + '">Email us</a>' +
+    box.innerHTML = '<div class="panel"><h2>' + T.byEmail + '</h2><p class="keep">' + esc(message || T.notNow) +
+      '</p><a class="cta" href="' + mailto(T.mailSubject, T.mailBody) + '">' + T.emailUs + '</a>' +
       '<p class="fine">' + EMAIL + '</p></div>';
   }
 
@@ -234,7 +304,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     box.appendChild(partyChip((cfg.maxParty + 1) + '+', cfg.maxParty + 1));
   }
   function partyChip(label, n){
-    var b = el('button', { type: 'button', 'class': 'chip', 'aria-pressed': String(state.party === n), 'aria-label': label + (n === 1 ? ' guest' : ' guests') }, label);
+    var b = el('button', { type: 'button', 'class': 'chip', 'aria-pressed': String(state.party === n), 'aria-label': label + (n === 1 ? T.guest : T.guests) }, label);
     b.onclick = function(){ setParty(n); };
     return b;
   }
@@ -246,8 +316,8 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     note.hidden = !big;
     ['stepDay', 'stepTime', 'stepDetails'].forEach(function(id){ $(id).classList.toggle('muted', big); });
     if (big) {
-      var msg = "Hi Che Bar! I'd like to book a table for a group of " + n + '+' + (state.date ? ' on ' + fmtDate(state.date, true) : '') + '.';
-      note.innerHTML = 'For groups of ' + n + ' or more, email us and we’ll set up the table: <a href="' + mailto('Group booking', msg) + '" onclick="try{gtag(\'event\',\'email_click\',{page:\'reserve\'});fbq(\'track\',\'Contact\')}catch(e){}">' + EMAIL + '</a>';
+      var msg = T.groupMsg(n, state.date ? fmtDate(state.date, true) : '');
+      note.innerHTML = T.groupNote(n) + '<a href="' + mailto(T.groupSubject, msg) + '" onclick="try{gtag(\'event\',\'email_click\',{page:\'reserve\'});fbq(\'track\',\'Contact\')}catch(e){}">' + EMAIL + '</a>';
       updateSubmit();
       return;
     }
@@ -260,16 +330,16 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     for (var i = 0; i < DAY_CHIPS; i++) {
       var d = addDays(cfg.today, i);
       var closed = cfg.closedDates.indexOf(d) !== -1;
-      var top = i === 0 ? 'Today' : i === 1 ? 'Tmrw' : fmtDate(d).slice(0, 3);
-      var b = el('button', { type: 'button', 'class': 'chip day', 'aria-pressed': String(state.date === d), 'data-date': d, 'aria-label': fmtDate(d, true) + (closed ? ', not available online' : '') },
-        '<span class="dw">' + top + '</span><span class="dn">' + Number(d.slice(8)) + '</span><span class="dm">' + fmtDate(d).split(', ')[1].slice(0, 3) + '</span>');
+      var top = i === 0 ? T.today : i === 1 ? T.tmrw : shortPart(d, 'weekday');
+      var b = el('button', { type: 'button', 'class': 'chip day', 'aria-pressed': String(state.date === d), 'data-date': d, 'aria-label': fmtDate(d, true) + (closed ? T.notOnline : '') },
+        '<span class="dw">' + top + '</span><span class="dn">' + Number(d.slice(8)) + '</span><span class="dm">' + shortPart(d, 'month') + '</span>');
       if (closed) b.disabled = true;
       b.onclick = (function(dd){ return function(){ setDate(dd); }; })(d);
       box.appendChild(b);
     }
     // A day past the strip shows on the "Another date" button instead
     var beyond = !!state.date && state.date >= addDays(cfg.today, DAY_CHIPS);
-    $('otherVal').textContent = beyond ? fmtDate(state.date) : 'Pick a date';
+    $('otherVal').textContent = beyond ? fmtDate(state.date) : T.pickDate;
     $('otherBtn').classList.toggle('picked', beyond);
     if (!$('cal').hidden) renderCal();
   }
@@ -291,7 +361,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   }
   function renderCal(){
     var maxD = addDays(cfg.today, cfg.maxDaysAhead);
-    $('calTitle').textContent = new Date(calMonth + '-15T12:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    $('calTitle').textContent = cap(new Date(calMonth + '-15T12:00:00Z').toLocaleDateString(LOCALE, { month: 'long', year: 'numeric', timeZone: 'UTC' }));
     $('calPrev').disabled = calMonth <= cfg.today.slice(0, 7);
     $('calNext').disabled = calMonth >= maxD.slice(0, 7);
     var grid = $('calDays'); grid.innerHTML = '';
@@ -305,7 +375,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
         type: 'button',
         'class': 'cal-day' + (d === cfg.today ? ' today' : ''),
         'aria-pressed': String(state.date === d),
-        'aria-label': fmtDate(d, true) + (closed ? ', not available online' : '')
+        'aria-label': fmtDate(d, true) + (closed ? T.notOnline : '')
       }, String(n));
       if (d < cfg.today || d > maxD || closed) b.disabled = true;
       b.onclick = (function(dd){ return function(){ toggleCal(false); setDate(dd); }; })(d);
@@ -335,7 +405,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     api('?date=' + state.date + '&party=' + state.party).then(function(res){
       if (mine !== slotReq) return; // a newer day/party was picked meanwhile
       if (res._status === 503) { unavailable(res.error); return; }
-      if (res._status !== 200) { showTimesMessage(esc(res.error || 'Could not load times. Please try again.')); state.slots = []; state.time = null; updateSubmit(); return; }
+      if (res._status !== 200) { showTimesMessage(esc(res.error || T.loadFail)); state.slots = []; state.time = null; updateSubmit(); return; }
       state.slots = res.slots || [];
       // Late in the day with nothing left: jump to tomorrow
       if (res.open && state.date === cfg.today && state.slots.length === 0 && !state.autoMoved) {
@@ -343,24 +413,24 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
         setDate(addDays(cfg.today, 1));
         return;
       }
-      if (!res.open) { state.time = null; showTimesMessage(esc(res.message || 'No online bookings that day. Walk-ins are welcome.')); updateSubmit(); return; }
+      if (!res.open) { state.time = null; showTimesMessage(esc(res.message || T.noneThatDay)); updateSubmit(); return; }
       var still = state.slots.some(function(s){ return s.time === state.time && s.available; });
       if (!still) state.time = null;
       renderSlots();
     }).catch(function(){
       if (mine !== slotReq) return;
-      showTimesMessage('Could not load times. Check your connection and try again.');
+      showTimesMessage(T.loadOffline);
     });
   }
   function renderSlots(){
     var box = $('times'); box.innerHTML = '';
-    if (!state.slots.length) { showTimesMessage('No more times left online for this day. Walk-ins are welcome, or pick another day.'); updateSubmit(); return; }
+    if (!state.slots.length) { showTimesMessage(T.noneLeft); updateSubmit(); return; }
     if (!state.slots.some(function(s){ return s.available; })) {
-      showTimesMessage('We’re fully booked online for ' + (state.date === cfg.today ? 'today' : 'this day') + '. Walk-ins are welcome, or pick another day.');
+      showTimesMessage(T.full(state.date === cfg.today));
       updateSubmit();
       return;
     }
-    if (state.slots.some(function(s){ return isHappyHour(s.time); })) box.appendChild(el('p', { 'class': 'hh-legend' }, 'Happy Hour · 5 – 7 PM daily'));
+    if (state.slots.some(function(s){ return isHappyHour(s.time); })) box.appendChild(el('p', { 'class': 'hh-legend' }, T.hhLegend));
     PARTS.forEach(function(p){
       var list = state.slots.filter(function(s){ var m = mins(s.time); return m >= p[1] && m <= p[2]; });
       if (!list.length) return;
@@ -373,8 +443,8 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
           type: 'button',
           'class': 'chip slot' + (hh ? ' hh' : ''),
           'aria-pressed': String(state.time === s.time),
-          'aria-label': fmtTime(s.time) + (hh ? ', happy hour' : '') + (s.available ? '' : ', full')
-        }, fmtTime(s.time) + (hh ? '<span class="tag">Happy hour</span>' : ''));
+          'aria-label': fmtTime(s.time) + (hh ? T.hhAria : '') + (s.available ? '' : T.fullAria)
+        }, fmtTime(s.time) + (hh ? '<span class="tag">' + T.hhTag + '</span>' : ''));
         if (!s.available) b.disabled = true;
         b.onclick = function(){
           state.time = s.time;
@@ -395,12 +465,12 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   function detailsOk(){ return $('name').value.trim().length > 0 && emailOk($('email').value); }
   function updateSubmit(){
     var b = $('submit');
-    if (state.busy) { b.disabled = true; b.textContent = 'Booking…'; return; }
-    if (state.party > cfg.maxParty) { b.disabled = true; b.textContent = 'Message us for big groups'; return; }
-    if (!state.time) { b.disabled = true; b.textContent = 'Pick a time'; return; }
-    var summary = state.party + (state.party === 1 ? ' guest' : ' guests') + ' · ' + fmtDate(state.date) + ' · ' + fmtTime(state.time);
+    if (state.busy) { b.disabled = true; b.textContent = T.booking; return; }
+    if (state.party > cfg.maxParty) { b.disabled = true; b.textContent = T.bigGroup; return; }
+    if (!state.time) { b.disabled = true; b.textContent = T.pickTime; return; }
+    var summary = state.party + (state.party === 1 ? T.guest : T.guests) + ' · ' + fmtDate(state.date) + ' · ' + fmtTime(state.time);
     b.disabled = !detailsOk();
-    b.textContent = detailsOk() ? 'Book ' + summary : 'Add your name & email';
+    b.textContent = detailsOk() ? T.book + summary : T.addDetails;
   }
   ['name', 'email'].forEach(function(id){ $(id).addEventListener('input', updateSubmit); });
 
@@ -421,13 +491,13 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
       state.busy = false;
       if (res.ok && res.booking) { showDone(res.booking, res.emailed); return; }
       if (res._status === 503) { unavailable(res.error); return; }
-      err.textContent = res.error || 'Something went wrong. Please try again.';
+      err.textContent = res.error || T.wrong;
       err.hidden = false;
       if (res.code === 'slot_full' || res.code === 'time_unavailable' || res.code === 'closed') { state.time = null; loadSlots(); }
       updateSubmit();
     }).catch(function(){
       state.busy = false;
-      err.textContent = 'Could not reach us. Check your connection and try again.';
+      err.textContent = T.offline;
       err.hidden = false;
       updateSubmit();
     });
@@ -445,22 +515,22 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
       'UID:' + b.token + '@chebararuba.com',
       'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, ''),
       'DTSTART:' + utcStamp(b.date, b.time), 'DTEND:' + utcStamp(b.date, b.time, 90),
-      'SUMMARY:Che Bar — table for ' + b.party,
+      'SUMMARY:' + T.calSummary + b.party,
       'LOCATION:Che Bar\\, Paseo Herencia Mall\\, J.E. Irausquin Blvd 382A\\, Palm Beach\\, Aruba',
-      'DESCRIPTION:Change or cancel: ' + manageUrl(b.token),
+      'DESCRIPTION:' + T.changeCancel + manageUrl(b.token),
       'END:VEVENT', 'END:VCALENDAR'
     ];
     return lines.join('\r\n');
   }
   function googleLink(b){
     return 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
-      '&text=' + encodeURIComponent('Che Bar — table for ' + b.party) +
+      '&text=' + encodeURIComponent(T.calSummary + b.party) +
       '&dates=' + utcStamp(b.date, b.time) + '/' + utcStamp(b.date, b.time, 90) +
       '&location=' + encodeURIComponent('Che Bar, Paseo Herencia Mall, Palm Beach, Aruba') +
-      '&details=' + encodeURIComponent('Change or cancel: ' + manageUrl(b.token));
+      '&details=' + encodeURIComponent(T.changeCancel + manageUrl(b.token));
   }
   function copy(text, button){
-    var done = function(){ var old = button.textContent; button.textContent = 'Copied'; setTimeout(function(){ button.textContent = old; }, 1800); };
+    var done = function(){ var old = button.textContent; button.textContent = T.copied; setTimeout(function(){ button.textContent = old; }, 1800); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function(){ legacyCopy(text); done(); });
     else { legacyCopy(text); done(); }
   }
@@ -478,15 +548,15 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     box.innerHTML =
       '<div class="panel">' +
         '<div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1a1612" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>' +
-        '<h2>You’re booked!</h2>' +
+        '<h2>' + T.booked + '</h2>' +
         '<p class="when">' + esc(fmtDate(b.date, true)) + ' · ' + fmtTime(b.time) + '</p>' +
-        '<p class="who">Table for ' + b.party + ' · ' + esc(b.name) + '</p>' +
-        '<div class="actions"><button type="button" class="btn2" id="ics">Add to calendar</button><a class="btn2" target="_blank" rel="noopener" href="' + googleLink(b) + '">Google Calendar</a></div>' +
+        '<p class="who">' + T.tableFor + b.party + ' · ' + esc(b.name) + '</p>' +
+        '<div class="actions"><button type="button" class="btn2" id="ics">' + T.addCal + '</button><a class="btn2" target="_blank" rel="noopener" href="' + googleLink(b) + '">Google Calendar</a></div>' +
         (emailed
-          ? '<p class="keep">We’ve emailed your confirmation to <b style="color:var(--text)">' + esc($('email').value.trim()) + '</b>. Need to change or cancel? Use the link in the email, or this one:</p>'
-          : '<p class="keep">This page is your confirmation, so take a screenshot. Need to change or cancel? Use this link:</p>') +
-        '<div class="linkbox"><code>' + esc(link.replace(/^https?:\/\//, '')) + '</code><button type="button" id="copyLink">Copy</button></div>' +
-        '<p class="fine" style="margin-top:18px">See you at Paseo Herencia Mall, Palm Beach · <a href="https://maps.google.com/?q=Che+Bar+Paseo+Herencia+Aruba" style="color:var(--gold)">Directions</a></p>' +
+          ? '<p class="keep">' + T.emailed(esc($('email').value.trim())) + '</p>'
+          : '<p class="keep">' + T.notEmailed + '</p>') +
+        '<div class="linkbox"><code>' + esc(link.replace(/^https?:\/\//, '')) + '</code><button type="button" id="copyLink">' + T.copy + '</button></div>' +
+        '<p class="fine" style="margin-top:18px">' + T.seeYou + '<a href="https://maps.google.com/?q=Che+Bar+Paseo+Herencia+Aruba" style="color:var(--gold)">' + T.directions + '</a></p>' +
       '</div>';
     $('ics').onclick = function(){
       var blob = new Blob([calendarFile(b)], { type: 'text/calendar;charset=utf-8' });
@@ -501,43 +571,43 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   function showManage(token){
     $('book').hidden = true; $('intro').hidden = true;
     var box = $('manage'); box.hidden = false;
-    box.innerHTML = '<div class="panel"><p class="who">Loading your booking…</p></div>';
+    box.innerHTML = '<div class="panel"><p class="who">' + T.loadingBooking + '</p></div>';
     api('/manage', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: token, action: 'get' }) }).then(function(res){
       if (!res.booking) {
-        box.innerHTML = '<div class="panel"><h2>Booking not found</h2><p class="keep">' + esc(res.error || 'We couldn’t find this booking.') + '</p><a class="again" href="' + location.pathname + '">Make a new booking</a></div>';
+        box.innerHTML = '<div class="panel"><h2>' + T.notFound + '</h2><p class="keep">' + esc(res.error || T.notFoundText) + '</p><a class="again" href="' + location.pathname + '">' + T.newBooking + '</a></div>';
         return;
       }
       renderManage(token, res.booking);
     }).catch(function(){
-      box.innerHTML = '<div class="panel"><p class="keep">Could not load your booking. Check your connection and refresh.</p></div>';
+      box.innerHTML = '<div class="panel"><p class="keep">' + T.manageFail + '</p></div>';
     });
   }
   function renderManage(token, b){
     var box = $('manage');
     var cancelled = b.status === 'cancelled';
-    var label = { confirmed: 'Confirmed', seated: 'Checked in', no_show: 'Missed', cancelled: 'Cancelled' }[b.status] || b.status;
+    var label = T.status[b.status] || b.status;
     box.innerHTML =
       '<div class="panel">' +
-        '<h2>Your booking</h2>' +
+        '<h2>' + T.yourBooking + '</h2>' +
         '<p class="when">' + esc(fmtDate(b.date, true)) + ' · ' + fmtTime(b.time) + '</p>' +
-        '<p class="who">Table for ' + b.party + ' · ' + esc(b.name) + '</p>' +
+        '<p class="who">' + T.tableFor + b.party + ' · ' + esc(b.name) + '</p>' +
         '<span class="status' + (cancelled ? ' cancelled' : '') + '">' + label + '</span>' +
         (b.status === 'confirmed'
-          ? '<p class="keep" style="margin-top:20px">Want a different time? Cancel this one and book again, or <a href="' + mailto('Change my booking') + '" style="color:var(--gold)">email us</a>.</p><button type="button" class="linkish" id="cancelBtn">Cancel this booking</button>'
+          ? '<p class="keep" style="margin-top:20px">' + T.differentTime + '<a href="' + mailto(T.changeSubject) + '" style="color:var(--gold)">' + T.emailUsLower + '</a>.</p><button type="button" class="linkish" id="cancelBtn">' + T.cancelBtn + '</button>'
           : '') +
-        '<div><a class="again" href="' + location.pathname + '">Make a new booking</a></div>' +
+        '<div><a class="again" href="' + location.pathname + '">' + T.newBooking + '</a></div>' +
       '</div>';
     var btn = $('cancelBtn');
     if (btn) btn.onclick = function(){
-      if (!confirm('Cancel your table for ' + b.party + ' on ' + fmtDate(b.date) + ' at ' + fmtTime(b.time) + '?')) return;
-      btn.disabled = true; btn.textContent = 'Cancelling…';
+      if (!confirm(T.confirmCancel(b.party, fmtDate(b.date), fmtTime(b.time)))) return;
+      btn.disabled = true; btn.textContent = T.cancelling;
       api('/manage', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: token, action: 'cancel' }) }).then(function(res){
         if (res.booking) { track('reservation_cancel'); renderManage(token, res.booking); return; }
-        btn.disabled = false; btn.textContent = 'Cancel this booking';
-        alert(res.error || 'Could not cancel. Please email us at ' + EMAIL + '.');
+        btn.disabled = false; btn.textContent = T.cancelBtn;
+        alert(res.error || T.cancelFail);
       }).catch(function(){
-        btn.disabled = false; btn.textContent = 'Cancel this booking';
-        alert('Could not reach us. Check your connection and try again.');
+        btn.disabled = false; btn.textContent = T.cancelBtn;
+        alert(T.offline);
       });
     };
   }
@@ -551,12 +621,12 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
   renderDays();
   api('').then(function(res){
     if (res._status !== 200) { unavailable(res.error); return; }
-    if (!res.online) { unavailable('Online booking is paused right now. Walk-ins are welcome, or message us to book.'); return; }
+    if (!res.online) { unavailable(T.paused); return; }
     cfg.maxParty = res.maxParty || cfg.maxParty;
     cfg.maxDaysAhead = res.maxDaysAhead || cfg.maxDaysAhead;
     cfg.closedDates = res.closedDates || [];
     cfg.emails = !!res.emails;
-    if (cfg.emails) $('fine').textContent = 'Instant confirmation by email. No deposit, no service charge.';
+    if (cfg.emails) $('fine').textContent = T.fineEmail;
     if (res.today) { cfg.today = res.today; if (state.date < cfg.today) state.date = cfg.today; }
     if (state.party > cfg.maxParty) state.party = Math.min(2, cfg.maxParty);
     renderParty();
@@ -564,7 +634,7 @@ header{position:relative}header .lang-switch{display:inline-flex;align-items:cen
     for (var i = 0; i < DAY_CHIPS && cfg.closedDates.indexOf(state.date) !== -1; i++) state.date = addDays(cfg.today, i + 1);
     renderDays();
     loadSlots();
-  }).catch(function(){ unavailable('Could not reach our booking system. Please try again in a moment.'); });
+  }).catch(function(){ unavailable(T.noSystem); });
 })();
 </script>
 </body>
